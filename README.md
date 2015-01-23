@@ -94,5 +94,3 @@ $users->push(['name' => 'Jane Doe', 'email' => 'jane@doe.com']);
 $users->delete('jack');
 $users->delete();
 ```
-
-
