@@ -20,7 +20,7 @@
     "kreait/firebase-php": "0.2.*"
   },
   "autoload": {
-    "psr-4": { "Kreait\\Firebase\\": "src/" }
+    "psr-4": { "Kreait\\FirebaseBundle\\": "" }
   },
   "extra": {
     "branch-alias": {
