@@ -1,0 +1,30 @@
+{
+  "name": "kreait/firebase-bundle",
+  "description": "Symfony2 Bundle for Firebase REST API client",
+  "keywords": ["firebase", "rest", "api", "http"],
+  "homepage": "https://github.com/kreait/firebase-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jérôme Gamez",
+      "homepage": "https://github.com/jeromegamez",
+      "email": "jerome@kreait.com"
+    },
+    {
+      "name": "Armen Mkrtchyan",
+      "homepage": "https://github.com/iamtankist",
+      "email": "armen@kreait.com"
+    }
+  ],
+  "require": {
+    "kreait/firebase-php": "0.2.*"
+  },
+  "autoload": {
+    "psr-4": { "Kreait\\Firebase\\": "src/" }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  }
+}
