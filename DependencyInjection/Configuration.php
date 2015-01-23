@@ -30,7 +30,6 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('scheme')->defaultValue('https')->end()
                             ->scalarNode('host')->isRequired()->end()
                             ->arrayNode('references')
-                                ->isRequired()
                                 ->requiresAtLeastOneElement()
                                 ->useAttributeAsKey('name')
                                 ->prototype('scalar')->end()
