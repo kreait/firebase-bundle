@@ -2,13 +2,13 @@ build:
   environment:
     php: '5.4.28'
 
-tests:
-  override:
-    -
-      command: phpunit --coverage-clover=coverage.xml
-      coverage:
-        file: coverage.xml
-        format: php-clover
+  tests:
+    override:
+      -
+        command: phpunit --coverage-clover=coverage.xml
+        coverage:
+          file: coverage.xml
+          format: php-clover
 
 checks:
   php:
