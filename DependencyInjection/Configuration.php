@@ -21,24 +21,50 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('kreait_firebase');
 
         $rootNode->children()
-                ->arrayNode('connections')
-                    ->isRequired()
-                    ->requiresAtLeastOneElement()
-                    ->useAttributeAsKey('connection')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('scheme')->defaultValue('https')->end()
-                            ->scalarNode('host')->isRequired()->end()
-                            ->arrayNode('references')
-                                ->requiresAtLeastOneElement()
-                                ->useAttributeAsKey('name')
-                                ->prototype('scalar')->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
+            ->append($this->addConnectionsNode())
             ->end();
 
         return $treeBuilder;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addConnectionsNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('connections');
+
+        $node
+            ->isRequired()
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('connection')
+            ->prototype('array')
+                ->children()
+                    ->scalarNode('scheme')->defaultValue('https')->end()
+                    ->scalarNode('host')->isRequired()->end()
+                    ->append($this->addReferencesNode())
+                ->end()
+            ->end()
+        ->end();
+
+        return $node;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addReferencesNode()
+    {
+        $builder = new TreeBuilder();
+        $node = $builder->root('references');
+
+        $node
+            ->requiresAtLeastOneElement()
+            ->useAttributeAsKey('name')
+            ->prototype('scalar')
+        ->end();
+
+        return $node;
     }
 }
