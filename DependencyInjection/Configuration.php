@@ -21,8 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('kreait_firebase');
 
         $rootNode->children()
-            ->append($this->addConnectionsNode())
-            ->end();
+            ->append($this->addConnectionsNode());
 
         return $treeBuilder;
     }
@@ -45,8 +44,7 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('host')->isRequired()->end()
                     ->append($this->addReferencesNode())
                 ->end()
-            ->end()
-        ->end();
+            ->end();
 
         return $node;
     }
@@ -62,8 +60,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->requiresAtLeastOneElement()
             ->useAttributeAsKey('name')
-            ->prototype('scalar')
-        ->end();
+            ->prototype('scalar');
 
         return $node;
     }
