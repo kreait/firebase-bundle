@@ -1,6 +1,9 @@
 build:
   environment:
     php: '5.4.28'
+    mysql: false
+    postgresql: false
+    redis: false
 
   tests:
     override:

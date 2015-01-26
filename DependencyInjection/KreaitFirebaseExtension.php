@@ -22,7 +22,15 @@ class KreaitFirebaseExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach ($config['connections'] as $name => $connection) {
+        $this->processConnections($config['connections'], $container);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processConnections(array $connectionsConfig, ContainerBuilder $container)
+    {
+        foreach ($connectionsConfig as $name => $connection) {
             $connectionDefinition = new Definition();
             $connectionDefinition->setClass('Kreait\Firebase\Firebase');
             $connectionDefinition->setArguments(array($connection['scheme'] . '://' . $connection['host']));
@@ -31,17 +39,26 @@ class KreaitFirebaseExtension extends Extension
             $container->setDefinition($connectionServiceId, $connectionDefinition);
 
             if (!empty($connection['references'])) {
-                foreach ($connection['references'] as $key => $value) {
-                    $referenceDefinition = new Definition();
-                    $referenceDefinition->setClass('Kreait\Firebase\Reference');
-                    $referenceDefinition->setArguments(array(
-                        new Reference($connectionServiceId),
-                        $value
-                    ));
-
-                    $container->setDefinition('kreait_firebase.reference.' . $key, $referenceDefinition);
-                }
+                $this->processReferences($connectionServiceId, $connection['references'], $container);
             }
         }
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processReferences($connectionServiceId, array $referencesConfig, ContainerBuilder $container)
+    {
+        foreach ($referencesConfig as $key => $value) {
+            $referenceDefinition = new Definition();
+            $referenceDefinition->setClass('Kreait\Firebase\Reference');
+            $referenceDefinition->setArguments(array(
+                new Reference($connectionServiceId),
+                $value
+            ));
+
+            $container->setDefinition('kreait_firebase.reference.' . $key, $referenceDefinition);
+        }
+    }
+
 }
