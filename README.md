@@ -1,6 +1,8 @@
 #Firebase Symfony2 Bundle
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8d6e529b-ec74-4bfb-8892-4ef1e21a76f0/mini.png)](https://insight.sensiolabs.com/projects/8d6e529b-ec74-4bfb-8892-4ef1e21a76f0)
+[![Packagist](https://img.shields.io/packagist/v/kreait/firebase-bundle.svg?style=flat-square)](https://packagist.org/packages/kreait/firebase-bundle)
+[![Packagist](https://img.shields.io/packagist/l/kreait/firebase-bundle.svg?style=flat-square)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
 
 A Symfony2 Bundle for the [Firebase PHP client](https://github.com/kreait/firebase-php).
 
