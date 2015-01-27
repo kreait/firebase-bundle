@@ -101,3 +101,26 @@ $users->push(['name' => 'Jane Doe', 'email' => 'jane@doe.com']);
 $users->delete('jack');
 $users->delete();
 ```
+
+### Using different HTTP adapters
+
+In case you want to specify an HTTP adapter other than default one, you need to install `https://github.com/egeloen/IvoryHttpAdapterBundle`.
+
+Then configuration is as follows:
+
+```
+ivory_http_adapter:
+    default: my_curl_adapter
+    adapters:
+        my_curl_adapter:
+            type: curl
+
+kreait_firebase:
+    connections:
+        main:
+            host: glaring-inferno-6221.firebaseio.com
+            adapter: my_curl_adapter
+            references:
+                profiles: data/profiles
+```
+

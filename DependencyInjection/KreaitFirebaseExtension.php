@@ -36,6 +36,10 @@ class KreaitFirebaseExtension extends Extension
             $connectionDefinition->setArguments(array($connection['scheme'] . '://' . $connection['host']));
             $connectionServiceId = 'kreait_firebase.connection.' . $name;
 
+            if(array_key_exists('adapter',$connection)) {
+                $connectionDefinition->addArgument(new Reference('ivory.http_adapter.'.$connection['adapter']));
+            }
+
             $container->setDefinition($connectionServiceId, $connectionDefinition);
 
             if (!empty($connection['references'])) {

@@ -41,6 +41,7 @@ class Configuration implements ConfigurationInterface
             ->prototype('array')
                 ->children()
                     ->scalarNode('scheme')->defaultValue('https')->end()
+                    ->scalarNode('adapter')->end()
                     ->scalarNode('host')->isRequired()->end()
                     ->append($this->addReferencesNode())
                 ->end()
