@@ -18,7 +18,8 @@
   ],
   "require": {
     "kreait/firebase-php": "0.2.*",
-    "symfony/framework-bundle": "~2.0"
+    "symfony/framework-bundle": "~2.0",
+    "egeloen/http-adapter-bundle": "0.5.*"
   },
   "autoload": {
     "psr-4": { "Kreait\\FirebaseBundle\\": "" }
