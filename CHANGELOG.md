@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## [Unreleased]
+## 0.3.1 - 2015-01-28
+### FEATURE
+* Ability to specify HTTP adapter
+
 ### CLEANUP
 * Removed unused USE statements
 * Text files should contain line endings
