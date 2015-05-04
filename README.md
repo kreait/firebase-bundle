@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/packagist/l/kreait/firebase-bundle.svg?style=flat-square)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
 [![Code Coverage](https://scrutinizer-ci.com/g/kreait/firebase-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kreait/firebase-bundle/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kreait/firebase-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kreait/firebase-bundle/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/kreait/firebase-bundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kreait/firebase-bundle/build-status/master)
+[![Travis](https://img.shields.io/travis/kreait/firebase-bundle.svg?style=flat-square)](https://travis-ci.org/kreait/firebase-bundle)
 
 A Symfony2 Bundle for the [Firebase PHP client](https://github.com/kreait/firebase-php).
 
