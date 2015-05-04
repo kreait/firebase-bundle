@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 0.4 - 2015-05-04
 * Adds authentication support
 * Removes HTTPAdapterBundle as dependency, because it is not available in a current enough version. The Firebase library
   will guess the best fitting HTTP client from the available clients in your project. 
