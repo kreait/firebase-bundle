@@ -52,7 +52,7 @@ kreait_firebase:
 
 Setup complete!
 
-## Confuguration
+## Configuration
 
 Following configuration
 
@@ -76,51 +76,17 @@ will automagically register the following services
 
 ## Usage
 
-### Basic commands
+Please see [https://github.com/kreait/firebase-php#documentation](https://github.com/kreait/firebase-php#documentation)
+for the full documentation
+
+### Retrieving a Firebase connection
 
 ```php
 $firebase = $this->container->get('kreait_firebase.connection.main');
-
-$firebase->set(['name' => 'John Doe', 'email' => 'john@doh.com'], 'data/users/john');
-$firebase->update(['email' => 'john@doe.com'], 'data/users/john');
-$firebase->push(['name' => 'Jane Doe', 'email' => 'jane@doe.com'], 'data/users');
-$firebase->delete('data/users/john');
-$firebase->get('data/users');
-$firebase->get('data/users', ['shallow' => true]); // Limit the depth of the data received
-
 ```
 
-### References
+### Retrieving a Firebase Reference
 
 ```php
 $users = $this->container->get('kreait_firebase.reference.users');
-
-$users->set(['name' => 'Jack Doe', 'email' => 'jack@doh.com'], 'jack');
-$users->update(['email' => 'jack@doe.com'], 'jack');
-$users->push(['name' => 'Jane Doe', 'email' => 'jane@doe.com']);
-$users->delete('jack');
-$users->delete();
 ```
-
-### Using different HTTP adapters
-
-In case you want to specify an HTTP adapter other than default one, you need to install `https://github.com/egeloen/IvoryHttpAdapterBundle`.
-
-Then configuration is as follows:
-
-```
-ivory_http_adapter:
-    default: my_curl_adapter
-    adapters:
-        my_curl_adapter:
-            type: curl
-
-kreait_firebase:
-    connections:
-        main:
-            host: glaring-inferno-6221.firebaseio.com
-            adapter: my_curl_adapter
-            references:
-                profiles: data/profiles
-```
-

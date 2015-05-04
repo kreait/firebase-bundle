@@ -2,61 +2,41 @@
 
 namespace Kreait\FirebaseBundle\Tests\DependencyInjection;
 
+use Kreait\Firebase\Firebase;
 use Kreait\FirebaseBundle\DependencyInjection\KreaitFirebaseExtension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
-class KreaitFirebaseExtensionTest extends \PHPUnit_Framework_TestCase
+class KreaitFirebaseExtensionTest extends AbstractExtensionTestCase
 {
-    public function testEmpty()
+    protected function getContainerExtensions()
     {
-        $this->setExpectedException('Symfony\Component\Config\Definition\Exception\InvalidConfigurationException');
-        $container = new ContainerBuilder();
-        $loader = new KreaitFirebaseExtension();
-        $loader->load(array(), $container);
+        return [
+            new KreaitFirebaseExtension()
+        ];
     }
 
-    public function testMinimalValid()
+    public function testAllConfiguredSettingsAreProcessed()
     {
-        $container = new ContainerBuilder();
-        $loader = new KreaitFirebaseExtension();
-        $loader->load(array(array('connections' => array('foo' => array('host' => 'bar')))), $container);
-        $this->assertTrue($container->hasDefinition('kreait_firebase.connection.foo'));
-    }
+        $this->load([
+            'connections' => [
+                'foo' => [
+                    'host' => 'example.com',
+                    'secret' => 'secret',
+                    'references' => [
+                        'foo' => 'foo/bar'
+                    ],
+                ]
+            ]
+        ]);
 
-    public function testWithReference()
-    {
-        $container = new ContainerBuilder();
-        $loader = new KreaitFirebaseExtension();
-        $loader->load(array(array('connections' => array(
-            'foo' => array(
-                'host' => 'foohost',
-                'references' => array(
-                    'bar' => 'path/to/bar',
-                    'bazz' => 'path/to/bazz'
-                )
-            )
-        ))), $container);
+        $this->assertContainerBuilderHasService('kreait_firebase.connection.foo');
 
-        $this->assertTrue($container->hasDefinition('kreait_firebase.reference.bar'));
-        $this->assertTrue($container->hasDefinition('kreait_firebase.reference.bazz'));
-    }
+        /** @var Firebase $firebase */
+        $firebase = $this->container->get('kreait_firebase.connection.foo');
 
-    public function testWithAdapter()
-    {
-        $container = new ContainerBuilder();
-        $loader = new KreaitFirebaseExtension();
-        $loader->load(array(array('connections' => array(
-            'foo' => array(
-                'host' => 'foohost',
-                'adapter' => 'foohttpadapter'
-            )
-        ))), $container);
+        $this->assertEquals('https://example.com', $firebase->getBaseUrl());
+        $this->assertEquals('secret', $firebase->getConfiguration()->getFirebaseSecret());
 
-        $definition = $container->getDefinition('kreait_firebase.connection.foo');
-        $this->assertAttributeCount(2, 'arguments', $definition);
-        $reference = $definition->getArgument(1);
-        
-        $this->assertInstanceOf('Symfony\Component\DependencyInjection\Reference', $reference);
-        $this->assertSame('ivory.http_adapter.foohttpadapter', (string)$reference);
+        $this->assertInstanceOf('Kreait\Firebase\Reference', $this->container->get('kreait_firebase.reference.foo'));
     }
 }

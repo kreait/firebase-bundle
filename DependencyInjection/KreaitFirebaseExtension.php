@@ -2,6 +2,7 @@
 
 namespace Kreait\FirebaseBundle\DependencyInjection;
 
+use Kreait\Firebase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
@@ -33,12 +34,18 @@ class KreaitFirebaseExtension extends Extension
         foreach ($connectionsConfig as $name => $connection) {
             $connectionDefinition = new Definition();
             $connectionDefinition->setClass('Kreait\Firebase\Firebase');
-            $connectionDefinition->setArguments(array($connection['scheme'] . '://' . $connection['host']));
-            $connectionServiceId = 'kreait_firebase.connection.' . $name;
 
-            if(array_key_exists('adapter',$connection)) {
-                $connectionDefinition->addArgument(new Reference('ivory.http_adapter.'.$connection['adapter']));
+            $firebaseConfigDefinition = new Definition();
+            $firebaseConfigDefinition->setClass('Kreait\Firebase\Configuration');
+
+            $baseUrl = $connection['scheme'] . '://' . $connection['host'];
+
+            if(array_key_exists('secret',$connection)) {
+                $firebaseConfigDefinition->addMethodCall('setFirebaseSecret', [$connection['secret']]);
             }
+
+            $connectionDefinition->setArguments(array($baseUrl, $firebaseConfigDefinition));
+            $connectionServiceId = 'kreait_firebase.connection.' . $name;
 
             $container->setDefinition($connectionServiceId, $connectionDefinition);
 
