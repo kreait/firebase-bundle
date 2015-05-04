@@ -23,6 +23,8 @@ matrix:
     - php: hhvm
     - env: COVERAGE=true PHPUNIT_FLAGS="--coverage-clover build/coverage.clover"
 
+install: travis_retry composer update
+
 before_script:
   - if [ "$TRAVIS_PHP_VERSION" = "hhv*" ]; then cat .travis.ini >> /etc/hhvm/php.ini; fi;
   - if [ "$TRAVIS_PHP_VERSION" = "php*" ]; then phpenv config-add .travis.ini ; fi;
