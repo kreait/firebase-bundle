@@ -62,6 +62,7 @@ kreait_firebase:
     main:
       scheme: https
       host: prefix-suffix-1234.firebaseio.com
+      secret: <your firebase secret>
       references:
         users: data/users
         images: data/images
@@ -90,3 +91,26 @@ $firebase = $this->container->get('kreait_firebase.connection.main');
 ```php
 $users = $this->container->get('kreait_firebase.reference.users');
 ```
+
+### Authentication
+
+To use authentication, you have to include the firebase token generator into your project
+
+```
+composer require firebase/token-generator
+```
+
+You also need to set the Firebase secret in your configuration.
+
+Then, in your code, you can authenticate a request like this:
+
+```php
+$firebase       = $this->container->get('kreait_firebase.connection.main');
+$tokenGenerator = $firebase->getConfiguration()->getAuthTokenGenerator();
+
+$adminToken     = $tokenGenerator->createAdminToken();
+
+$firebase->setAuthToken($adminToken);
+```
+
+This procedure is quite cumbersome at the moment, but will be made more conveniant in an upcoming release.
