@@ -94,13 +94,7 @@ $users = $this->container->get('kreait_firebase.reference.users');
 
 ### Authentication
 
-To use authentication, you have to include the firebase token generator into your project
-
-```
-composer require firebase/token-generator
-```
-
-You also need to set the Firebase secret in your configuration.
+To use authentication, you need to set the Firebase secret in your configuration.
 
 Then, in your code, you can authenticate a request like this:
 
