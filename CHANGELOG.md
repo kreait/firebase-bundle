@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Updated dependencies to add support for PHPUnit and Symfony 3.0.
+* Removed obsolete documentation from the README.
+
 ## 0.4 - 2015-05-04
 * Adds authentication support
 * Removes HTTPAdapterBundle as dependency, because it is not available in a current enough version. The Firebase library
