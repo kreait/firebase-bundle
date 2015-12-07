@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 0.5 - 2015-12-07
 
 * Updated dependencies to add support for PHPUnit and Symfony 3.0.
 * Removed obsolete documentation from the README.
