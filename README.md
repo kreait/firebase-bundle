@@ -2,13 +2,6 @@
 
 A Symfony2 Bundle for the [Firebase PHP client](https://github.com/kreait/firebase-php).
 
-## This project is abandoned and not longer maintained.
-
-Please use the kreait/firebase-php library ([Packagist](https://packagist.org/packages/kreait/firebase-php)/
-[Github](https://github.com/kreait/firebase-php)) directly and refer to the library's
-[Using this library (version 1.x) with Symfony](https://github.com/kreait/firebase-php/blob/69496a13084710ff36d693439297e778dde178f0/doc/symfony.md)
-documentation page to find out how you can migrate your application (it's easy, promised :)).
-
 ---
 
 ## Installation
