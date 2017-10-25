@@ -1,4 +1,4 @@
-#Firebase Symfony2 Bundle
+# Firebase Symfony2 Bundle
 
 A Symfony2 Bundle for the [Firebase PHP client](https://github.com/kreait/firebase-php).
 
