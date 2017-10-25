@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Rewrite
+* Added support for `kreait/firebase-php` ^3.3.2  
+
 ## 0.5 - 2015-12-07
 
 * Updated dependencies to add support for PHPUnit and Symfony 3.0.

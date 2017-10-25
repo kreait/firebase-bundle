@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit colors="false" bootstrap="vendor/autoload.php">
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.0/phpunit.xsd"
+    bootstrap="vendor/autoload.php"
+    colors="true"
+>
     <testsuites>
-        <testsuite name="FirebaseBundle Test Suite">
-            <directory suffix="Test.php">./Tests/</directory>
+        <testsuite name="Firebase Bundle Test Suite">
+            <directory>./Tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./</directory>
+            <directory>.</directory>
             <exclude>
                 <directory>./Tests</directory>
+                <directory>./Resources</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>

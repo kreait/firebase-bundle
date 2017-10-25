@@ -1,68 +1,44 @@
 <?php
 
-namespace Kreait\FirebaseBundle\DependencyInjection;
+declare(strict_types=1);
+
+namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
- */
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function getConfigTreeBuilder()
+    private $name;
+
+    public function __construct(string $name)
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('kreait_firebase');
-
-        $rootNode->children()
-            ->append($this->addConnectionsNode());
-
-        return $treeBuilder;
+        $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addConnectionsNode()
+    public function getConfigTreeBuilder()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('connections');
+        $root = $builder->root($this->name);
 
-        $node
-            ->isRequired()
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('connection')
-            ->prototype('array')
-                ->children()
-                    ->scalarNode('scheme')->defaultValue('https')->end()
-                    ->scalarNode('host')->isRequired()->end()
-                    ->scalarNode('secret')->end()
-                    ->append($this->addReferencesNode())
+        $root
+            ->fixXmlConfig('project')
+            ->children()
+                ->arrayNode('projects')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('database_uri')->end()
+                            ->scalarNode('api_key')->end()
+                            ->scalarNode('alias')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
 
-        return $node;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addReferencesNode()
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('references');
-
-        $node
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
-            ->prototype('scalar');
-
-        return $node;
+        return $builder;
     }
 }
