@@ -26,10 +26,5 @@
   },
   "autoload": {
     "psr-4": { "Kreait\\FirebaseBundle\\": "" }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.x-dev"
-    }
   }
 }
