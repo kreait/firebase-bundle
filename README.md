@@ -37,9 +37,12 @@ kreait_firebase:
             # Optional: If set to false, the service and its alias
             # can only be used via dependency injection
             public: true
+            # Optional: Path to the projects Service Account credentials file
+            # If omitted, the library will try to discover it.
+            credentials: '%kernel.project_dir%/config/service_account_credentials.json'
             # You can find the database URI at 
             # https://console.firebase.google.com/project/first/database/data
-            database_uri: 'https://first.firebaseio.com'
+            database_uri: 'https://my-project.firebaseio.com'
             # Optional: If set, you can access your project with
             # $container->get('firebase') 
             alias: 'firebase'

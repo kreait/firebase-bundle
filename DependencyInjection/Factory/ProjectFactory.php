@@ -23,6 +23,11 @@ class ProjectFactory
     {
         $factory = clone $this->firebaseFactory; // Ensure a new instance
 
+        if ($config['credentials'] ?? null) {
+            $serviceAccount = Firebase\ServiceAccount::fromValue($config['credentials']);
+            $factory = $factory->withServiceAccount($serviceAccount);
+        }
+
         if ($config['database_uri'] ?? null) {
             $factory = $this->firebaseFactory->withDatabaseUri($config['database_uri']);
         }

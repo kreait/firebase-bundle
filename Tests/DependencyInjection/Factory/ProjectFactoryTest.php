@@ -38,4 +38,16 @@ class ProjectFactoryTest extends TestCase
 
         $this->factory->create(['database_uri' => 'http://domain.tld']);
     }
+
+    /**
+     * @test
+     */
+    public function it_can_handle_a_credentials_path()
+    {
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withServiceAccount');
+
+        $this->factory->create(['credentials' => __DIR__.'/../../_fixtures/valid_credentials.json']);
+    }
 }

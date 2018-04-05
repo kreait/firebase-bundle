@@ -70,6 +70,22 @@ class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.bar'));
     }
 
+    /**
+     * @test
+     */
+    public function it_supports_specifying_credentials()
+    {
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
+            ],
+        ]);
+
+        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo'));
+    }
+
     protected function createContainer(array $config = [])
     {
         $container = new ContainerBuilder();
