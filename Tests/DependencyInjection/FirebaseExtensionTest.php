@@ -39,6 +39,24 @@ class FirebaseExtensionTest extends TestCase
     /**
      * @test
      */
+    public function a_project_can_be_private()
+    {
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'alias' => 'bar',
+                    'public' => false
+                ],
+            ],
+        ]);
+
+        $this->assertFalse($container->has($this->extension->getAlias().'.foo'));
+        $this->assertFalse($container->has('bar'));
+    }
+
+    /**
+     * @test
+     */
     public function it_can_provide_multiple_projects()
     {
         $container = $this->createContainer([

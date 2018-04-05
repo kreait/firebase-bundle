@@ -31,15 +31,16 @@ class FirebaseExtension extends Extension
     private function processProjectConfiguration($name, array $config, ContainerBuilder $container)
     {
         $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
+        $isPublic = $config['public'];
 
         $container->register($projectServiceId, Firebase::class)
             ->setFactory([new Reference(ProjectFactory::class), 'create'])
             ->addArgument($config)
-            ->setPublic(true);
+            ->setPublic($isPublic);
 
         if ($config['alias'] ?? null) {
             $alias = $container->setAlias($config['alias'], $projectServiceId);
-            $alias->setPublic(true);
+            $alias->setPublic($isPublic);
         }
     }
 

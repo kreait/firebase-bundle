@@ -34,6 +34,9 @@ kreait_firebase:
         # You can access your firebase project with
         # $container->get('kreait_firebase.first')
         first:
+            # Optional: If set to false, the service and its alias
+            # can only be used via dependency injection
+            public: true
             # You can find the database URI at 
             # https://console.firebase.google.com/project/first/database/data
             database_uri: 'https://first.firebaseio.com'

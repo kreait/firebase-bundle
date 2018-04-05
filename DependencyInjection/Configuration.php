@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                         ->children()
+                            ->scalarNode('public')->defaultTrue()->end()
                             ->scalarNode('database_uri')->end()
                             ->scalarNode('alias')->end()
                         ->end()
