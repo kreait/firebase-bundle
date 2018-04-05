@@ -4,6 +4,7 @@
     "keywords": ["firebase", "google", "sdk", "api", "database", "symfony", "bundle", "symfony-bundle"],
     "homepage": "https://github.com/kreait/firebase-bundle",
     "license": "MIT",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Jérôme Gamez",
