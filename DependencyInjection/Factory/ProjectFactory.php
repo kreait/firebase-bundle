@@ -27,10 +27,6 @@ class ProjectFactory
             $factory = $this->firebaseFactory->withDatabaseUri($config['database_uri']);
         }
 
-        if ($config['api_key'] ?? null) {
-            $factory = $this->firebaseFactory->withApiKey($config['api_key']);
-        }
-
         return $factory->create();
     }
 }

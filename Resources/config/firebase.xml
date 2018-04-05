@@ -5,8 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Kreait\Firebase\Factory" public="false" />
-        <service id="Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory" public="false">
+        <service id="Kreait\Firebase\Factory" />
+        <service id="Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory">
             <argument type="service" id="Kreait\Firebase\Factory" />
         </service>
     </services>

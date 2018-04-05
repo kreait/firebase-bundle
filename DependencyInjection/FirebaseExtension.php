@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 use Kreait\Firebase;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -33,10 +34,12 @@ class FirebaseExtension extends Extension
 
         $container->register($projectServiceId, Firebase::class)
             ->setFactory([new Reference(ProjectFactory::class), 'create'])
-            ->addArgument($config);
+            ->addArgument($config)
+            ->setPublic(true);
 
         if ($config['alias'] ?? null) {
-            $container->setAlias($config['alias'], $projectServiceId);
+            $alias = $container->setAlias($config['alias'], $projectServiceId);
+            $alias->setPublic(true);
         }
     }
 

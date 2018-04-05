@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Rewrite
-* Added support for `kreait/firebase-php` ^3.3.2  
+* Added support for `kreait/firebase-php` ^4.0  
 
 ## 0.5 - 2015-12-07
 

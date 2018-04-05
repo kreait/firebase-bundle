@@ -32,7 +32,6 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             ->scalarNode('database_uri')->end()
-                            ->scalarNode('api_key')->end()
                             ->scalarNode('alias')->end()
                         ->end()
                     ->end()

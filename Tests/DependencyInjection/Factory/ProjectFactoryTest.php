@@ -38,17 +38,4 @@ class ProjectFactoryTest extends TestCase
 
         $this->factory->create(['database_uri' => 'http://domain.tld']);
     }
-
-    /**
-     * @test
-     */
-    public function it_can_handle_an_api_key()
-    {
-        $this->firebaseFactory
-            ->expects($this->once())
-            ->method('withApiKey')
-            ->with('foo');
-
-        $this->factory->create(['api_key' => 'foo']);
-    }
 }

@@ -37,15 +37,11 @@ kreait_firebase:
             # You can find the database URI at 
             # https://console.firebase.google.com/project/first/database/data
             database_uri: 'https://first.firebaseio.com'
-            # You can find the API key at
-            # https://console.firebase.google.com/project/first/settings/general/
-            api_key: <some api key>
             # Optional: If set, you can access your project with
             # $container->get('firebase') 
             alias: 'firebase'
         second: # $container->get('kreait_firebase.second')
             database_uri: 'https://second.firebaseio.com'
-            api_key: <some api key>
         third: # $container->get('kreait_firebase.third')
             ...
         
