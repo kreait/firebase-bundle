@@ -2,12 +2,6 @@
 
 A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-php).
 
-## WORK IN PROGRESS
-
-The bundle will already work if your service account JSON file can be
-auto discovered,
-see http://firebase-php.readthedocs.io/en/stable/setup.html#with-autodiscovery .
-
 ---
 
 ## Installation
@@ -15,20 +9,29 @@ see http://firebase-php.readthedocs.io/en/stable/setup.html#with-autodiscovery .
 Add the bundle using [Composer](https://getcomposer.org)
 
 ```bash
-composer require kreait/firebase-bundle 1.0.x-dev
+composer require kreait/firebase-bundle ^1.0
 ```
 
 ```php
+// Symfony without Flex
 // in %kernel.root_dir%/AppKernel.php
 $bundles = array(
     // ...
     new Kreait\Firebase\Symfony\Bundle\FirebaseBundle(),
-    // ...
 );
+
+// Symfony with Flex
+// in config/bundles.php
+return [
+    // ...
+    Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
+];
 ```
 ### Configuration
 
 ```yaml
+# app/config/config.yml (Symfony without Flex)
+# config/packages/firebase.yaml (Symfony with Flex)
 kreait_firebase:
     projects:
         # You can access your firebase project with
