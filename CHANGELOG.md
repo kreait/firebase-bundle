@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.0.0 - 2018-04-06
 
 * Initial release with support for `kreait/firebase-php` ^4.0  
 
