@@ -1,68 +1,54 @@
 <?php
 
-namespace Kreait\FirebaseBundle\DependencyInjection;
+declare(strict_types=1);
+
+namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
- */
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function getConfigTreeBuilder()
+    private $name;
+
+    public function __construct(string $name)
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('kreait_firebase');
-
-        $rootNode->children()
-            ->append($this->addConnectionsNode());
-
-        return $treeBuilder;
+        $this->name = $name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addConnectionsNode()
+    public function getConfigTreeBuilder()
     {
         $builder = new TreeBuilder();
-        $node = $builder->root('connections');
+        $root = $builder->root($this->name);
 
-        $node
-            ->isRequired()
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('connection')
-            ->prototype('array')
-                ->children()
-                    ->scalarNode('scheme')->defaultValue('https')->end()
-                    ->scalarNode('host')->isRequired()->end()
-                    ->scalarNode('secret')->end()
-                    ->append($this->addReferencesNode())
+        $root
+            ->fixXmlConfig('project')
+            ->children()
+                ->arrayNode('projects')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('credentials')
+                                ->info('Path to the Google Service Account credentials file for this project.')
+                                ->example('%kernel.project_dir%/config/credentials.json')
+                            ->end()
+                            ->scalarNode('public')
+                                ->defaultTrue()
+                                ->info('If set to false, the service and its alias can only be used via dependency injection')
+                            ->end()
+                            ->scalarNode('database_uri')
+                                ->example('https://my-project.firebaseio.com')
+                                ->info('You can find the database URI in the project settings in the Firebase console')
+                            ->end()
+                            ->scalarNode('alias')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
 
-        return $node;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addReferencesNode()
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('references');
-
-        $node
-            ->requiresAtLeastOneElement()
-            ->useAttributeAsKey('name')
-            ->prototype('scalar');
-
-        return $node;
+        return $builder;
     }
 }

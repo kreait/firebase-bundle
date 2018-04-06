@@ -1,105 +1,57 @@
-# Firebase Symfony2 Bundle
+# Firebase SDK Bundle
 
-A Symfony2 Bundle for the [Firebase PHP client](https://github.com/kreait/firebase-php).
+A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-php).
 
 ---
 
 ## Installation
 
-### Download the bundle
+Add the bundle using [Composer](https://getcomposer.org)
 
-Execute the following from the project root directory
-
+```bash
+composer require kreait/firebase-bundle ^1.0
 ```
-  composer require kreait/firebase-bundle
-```
-
-### Enable the bundle
-
-Then, enable the bundle by adding the following line in the `app/AppKernel.php file of your project:
 
 ```php
-// app/AppKernel.php
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Kreait\FirebaseBundle\KreaitFirebaseBundle(),
-        );
+// Symfony without Flex
+// in %kernel.root_dir%/AppKernel.php
+$bundles = array(
+    // ...
+    new Kreait\Firebase\Symfony\Bundle\FirebaseBundle(),
+);
 
-        // ...
-    }
-}
+// Symfony with Flex
+// in config/bundles.php
+return [
+    // ...
+    Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
+];
 ```
+### Configuration
 
-### Add minimal configuration
-
-Add the following to `app/config/config.yml`
-
-```
+```yaml
+# app/config/config.yml (Symfony without Flex)
+# config/packages/firebase.yaml (Symfony with Flex)
 kreait_firebase:
-  connections:
-    main:
-      host: prefix-suffix-1234.firebaseio.com
+    projects:
+        # You can access your firebase project with
+        # $container->get('kreait_firebase.first')
+        first:
+            # Optional: If set to false, the service and its alias
+            # can only be used via dependency injection
+            public: true
+            # Optional: Path to the projects Service Account credentials file
+            # If omitted, the library will try to discover it.
+            credentials: '%kernel.project_dir%/config/service_account_credentials.json'
+            # You can find the database URI at 
+            # https://console.firebase.google.com/project/first/database/data
+            database_uri: 'https://my-project.firebaseio.com'
+            # Optional: If set, you can access your project with
+            # $container->get('firebase') 
+            alias: 'firebase'
+        second: # $container->get('kreait_firebase.second')
+            database_uri: 'https://second.firebaseio.com'
+        third: # $container->get('kreait_firebase.third')
+            ...
+        
 ```
-
-Setup complete!
-
-## Configuration
-
-Following configuration
-
-```
-kreait_firebase:
-  connections:
-    main:
-      scheme: https
-      host: prefix-suffix-1234.firebaseio.com
-      secret: <your firebase secret>
-      references:
-        users: data/users
-        images: data/images
-```
-
-will automagically register the following services 
-
-  - kreait_firebase.connection.main (instance of Kreait\Firebase\Firebase)
-  - kreait_firebase.reference.users (instance of Kreait\Firebase\Reference)
-  - kreait_firebase.reference.images (instance of Kreait\Firebase\Reference)
-
-
-## Usage
-
-Please see [https://github.com/kreait/firebase-php#documentation](https://github.com/kreait/firebase-php#documentation)
-for the full documentation
-
-### Retrieving a Firebase connection
-
-```php
-$firebase = $this->container->get('kreait_firebase.connection.main');
-```
-
-### Retrieving a Firebase Reference
-
-```php
-$users = $this->container->get('kreait_firebase.reference.users');
-```
-
-### Authentication
-
-To use authentication, you need to set the Firebase secret in your configuration.
-
-Then, in your code, you can authenticate a request like this:
-
-```php
-$firebase       = $this->container->get('kreait_firebase.connection.main');
-$tokenGenerator = $firebase->getConfiguration()->getAuthTokenGenerator();
-
-$adminToken     = $tokenGenerator->createAdminToken();
-
-$firebase->setAuthToken($adminToken);
-```
-
-This procedure is quite cumbersome at the moment, but will be made more conveniant in an upcoming release.

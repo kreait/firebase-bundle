@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+
+sudo: false
+
+install: travis_retry composer update
+
+script:
+  - vendor/bin/phpunit

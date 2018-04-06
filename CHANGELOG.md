@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Initial release with support for `kreait/firebase-php` ^4.0  
+
 ## 0.5 - 2015-12-07
 
 * Updated dependencies to add support for PHPUnit and Symfony 3.0.
