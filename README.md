@@ -2,6 +2,11 @@
 
 A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-php).
 
+[![Current version](https://img.shields.io/packagist/v/kreait/firebase-bundle.svg)](https://packagist.org/packages/kreait/firebase-bundle)
+[![Build Status](https://travis-ci.org/kreait/firebase-bundle.svg?branch=master)](https://travis-ci.org/kreait/firebase-bundle)
+[![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/kreait/firebase-bundle.svg)]()
+
 ---
 
 ## Installation
