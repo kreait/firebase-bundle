@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+* A project can be defined as the default project.
+* If only one project is configured, it is considered the default project.
+* The default project is aliased to the `Kreait\Firebase` class (usefule for Dependency Injection/Autowiring) 
+
 ## 1.0.0 - 2018-04-06
 
 * Initial release with support for `kreait/firebase-php` ^4.0  

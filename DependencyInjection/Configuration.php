@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 
+use Kreait\Firebase;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -38,6 +39,10 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('public')
                                 ->defaultTrue()
                                 ->info('If set to false, the service and its alias can only be used via dependency injection')
+                            ->end()
+                            ->scalarNode('default')
+                                ->defaultFalse()
+                                ->info('Whether this is the default project. If so, this project will be used using '.Firebase::class.' for dependency injection')
                             ->end()
                             ->scalarNode('database_uri')
                                 ->example('https://my-project.firebaseio.com')

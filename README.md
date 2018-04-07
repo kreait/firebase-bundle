@@ -40,6 +40,9 @@ kreait_firebase:
             # Optional: If set to false, the service and its alias
             # can only be used via dependency injection
             public: true
+            # Optional: If set to true, this project is used when
+            # using Kreait\Firebase as a type hint for dependency injection
+            default: false
             # Optional: Path to the projects Service Account credentials file
             # If omitted, the library will try to discover it.
             credentials: '%kernel.project_dir%/config/service_account_credentials.json'

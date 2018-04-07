@@ -6,8 +6,8 @@ namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 
 use Kreait\Firebase;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -15,6 +15,16 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class FirebaseExtension extends Extension
 {
+    /**
+     * @var array
+     */
+    private $projects = [];
+
+    /**
+     * @var string
+     */
+    private $defaultProject;
+
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = $this->getConfiguration($configs, $container);
@@ -24,11 +34,19 @@ class FirebaseExtension extends Extension
         $loader->load('firebase.xml');
 
         foreach ($config['projects'] ?? [] as $projectName => $projectConfiguration) {
-            $this->processProjectConfiguration($projectName, $projectConfiguration, $container);
+            $this->projects[] = $this->processProjectConfiguration($projectName, $projectConfiguration, $container);
+        }
+
+        if (!$this->defaultProject && 1 === \count($this->projects)) {
+            $this->defaultProject = array_values($this->projects)[0];
+        }
+
+        if ($this->defaultProject) {
+            $container->setAlias(Firebase::class, $this->defaultProject);
         }
     }
 
-    private function processProjectConfiguration($name, array $config, ContainerBuilder $container)
+    private function processProjectConfiguration($name, array $config, ContainerBuilder $container): string
     {
         $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
@@ -42,6 +60,16 @@ class FirebaseExtension extends Extension
             $alias = $container->setAlias($config['alias'], $projectServiceId);
             $alias->setPublic($isPublic);
         }
+
+        if ($this->defaultProject && $config['default']) {
+            throw new InvalidConfigurationException('Only one project can be set as default.');
+        }
+
+        if ($config['default']) {
+            $this->defaultProject = $projectServiceId;
+        }
+
+        return $projectServiceId;
     }
 
     public function getAlias()
