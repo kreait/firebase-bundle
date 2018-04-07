@@ -33,6 +33,7 @@ class FirebaseExtensionTest extends TestCase
         $container = $this->createContainer([
             'projects' => [
                 'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
                     'alias' => 'bar',
                 ],
             ],
@@ -49,6 +50,7 @@ class FirebaseExtensionTest extends TestCase
         $container = $this->createContainer([
             'projects' => [
                 'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
                     'alias' => 'bar',
                     'public' => false,
                 ],
@@ -66,8 +68,12 @@ class FirebaseExtensionTest extends TestCase
     {
         $container = $this->createContainer([
             'projects' => [
-                'foo' => [],
-                'bar' => [],
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
+                'bar' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
             ],
         ]);
 
@@ -102,9 +108,11 @@ class FirebaseExtensionTest extends TestCase
             'projects' => [
                 'foo' => [
                     'default' => true,
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
                 ],
                 'bar' => [
                     'default' => true,
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
                 ],
             ],
         ]);
@@ -117,9 +125,12 @@ class FirebaseExtensionTest extends TestCase
     {
         $container = $this->createContainer([
             'projects' => [
-                'foo' => [],
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
                 'bar' => [
                     'default' => true,
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
                 ],
             ],
         ], $makeServicesPublic = true);
@@ -134,7 +145,9 @@ class FirebaseExtensionTest extends TestCase
     {
         $container = $this->createContainer([
             'projects' => [
-                'foo' => [],
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
             ],
         ], $makeServicesPublic = true);
 
@@ -148,8 +161,12 @@ class FirebaseExtensionTest extends TestCase
     {
         $container = $this->createContainer([
             'projects' => [
-                'foo' => [],
-                'bar' => [],
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
+                'bar' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                ],
             ],
         ], $makeServicesPublic = true);
 
