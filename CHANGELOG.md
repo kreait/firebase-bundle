@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.1.1 - 2018-04-09
 
 ### Bugfixes
 
