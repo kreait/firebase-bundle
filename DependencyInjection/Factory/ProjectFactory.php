@@ -29,7 +29,7 @@ class ProjectFactory
         }
 
         if ($config['database_uri'] ?? null) {
-            $factory = $this->firebaseFactory->withDatabaseUri($config['database_uri']);
+            $factory = $factory->withDatabaseUri($config['database_uri']);
         }
 
         return $factory->create();

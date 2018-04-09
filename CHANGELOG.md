@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+### Bugfixes
+
+* Fixed the usage of the unconfigured base factory ([#7](https://github.com/kreait/firebase-bundle/pull/7)) 
+
 ## 1.1.0 - 2018-04-08
 
 * A project can be defined as the default project.
