@@ -6,6 +6,7 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![Build Status](https://travis-ci.org/kreait/firebase-bundle.svg?branch=master)](https://travis-ci.org/kreait/firebase-bundle)
 [![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
 [![Total Downloads](https://img.shields.io/packagist/dt/kreait/firebase-bundle.svg)]()
+[![Gitter](https://badges.gitter.im/kreait/firebase-php.svg)](https://gitter.im/kreait/firebase-php)
 
 ---
 
@@ -63,3 +64,11 @@ kreait_firebase:
             ...
         
 ```
+
+## Support
+
+For bug reports and feature requests, use the [issue tracker](https://github.com/kreait/firebase-bundle/issues/).
+
+For help with and discussion about the PHP SDK and Bundle, join the [Gitter Channel dedicated to this library](https://gitter.im/kreait/firebase-php).
+
+For questions about Firebase in general, use [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase) or join the [Firebase Slack Community](https://firebase.community).
