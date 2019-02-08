@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0 - 2019-02-08
+
+* Avoid deprecation warning with newer Symfony versions ([#11](https://github.com/kreait/firebase-bundle/pull/11))
+
 ## 1.1.1 - 2018-04-09
 
 ### Bugfixes
