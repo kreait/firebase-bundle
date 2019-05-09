@@ -6,7 +6,7 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![Build Status](https://travis-ci.org/kreait/firebase-bundle.svg?branch=master)](https://travis-ci.org/kreait/firebase-bundle)
 [![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
 [![Total Downloads](https://img.shields.io/packagist/dt/kreait/firebase-bundle.svg)]()
-[![Gitter](https://badges.gitter.im/kreait/firebase-php.svg)](https://gitter.im/kreait/firebase-php)
+[![Discord](https://img.shields.io/discord/523866370778333184.svg?color=7289da&logo=discord)](https://discord.gg/nbgVfty)
 
 ---
 
