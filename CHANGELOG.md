@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.3.0 - 2019-05-26
 
 * Credential autodiscovery is now disabled when the `credentials` configuration option 
   has been set. This prevents triggering it when there is a problem with the configured 
