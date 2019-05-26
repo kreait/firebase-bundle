@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+* Credential autodiscovery is now disabled when the `credentials` configuration option 
+  has been set. This prevents triggering it when there is a problem with the configured 
+  credentials.
+
 ## 1.2.0 - 2019-02-08
 
 * Avoid deprecation warning with newer Symfony versions ([#11](https://github.com/kreait/firebase-bundle/pull/11))

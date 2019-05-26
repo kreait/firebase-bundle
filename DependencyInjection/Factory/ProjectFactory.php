@@ -25,7 +25,9 @@ class ProjectFactory
 
         if ($config['credentials'] ?? null) {
             $serviceAccount = Firebase\ServiceAccount::fromValue($config['credentials']);
-            $factory = $factory->withServiceAccount($serviceAccount);
+            $factory = $factory
+                ->withServiceAccount($serviceAccount)
+                ->withDisabledAutoDiscovery();
         }
 
         if ($config['database_uri'] ?? null) {

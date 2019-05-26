@@ -179,8 +179,7 @@ class FirebaseExtensionTest extends TestCase
 
         // Make all services public just for testing
         if ($makeServicesPublic) {
-            $container->addCompilerPass(new class implements CompilerPassInterface
-            {
+            $container->addCompilerPass(new class() implements CompilerPassInterface {
                 public function process(ContainerBuilder $container)
                 {
                     array_map(function (Definition $definition) {
