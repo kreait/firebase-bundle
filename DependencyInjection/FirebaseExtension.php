@@ -57,8 +57,8 @@ class FirebaseExtension extends Extension
             ->setPublic($isPublic);
 
         if ($config['alias'] ?? null) {
-            $alias = $container->setAlias($config['alias'], $projectServiceId);
-            $alias->setPublic($isPublic);
+            $container->setAlias($config['alias'], $projectServiceId);
+            $container->getAlias($config['alias'])->setPublic($isPublic);
         }
 
         if ($this->defaultProject && $config['default']) {

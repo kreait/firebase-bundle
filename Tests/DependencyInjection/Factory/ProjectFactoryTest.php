@@ -28,6 +28,8 @@ class ProjectFactoryTest extends TestCase
 
     /**
      * @test
+     * @group legacy
+     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
     public function it_can_handle_a_custom_database_uri()
     {
@@ -41,6 +43,8 @@ class ProjectFactoryTest extends TestCase
 
     /**
      * @test
+     * @group legacy
+     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
     public function it_can_handle_a_credentials_path()
     {

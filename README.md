@@ -15,7 +15,7 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 Add the bundle using [Composer](https://getcomposer.org)
 
 ```bash
-composer require kreait/firebase-bundle ^1.0
+composer require kreait/firebase-bundle
 ```
 
 ```php

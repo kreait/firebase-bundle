@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Unreleased
+
+* Updated `kreait/firebase-php` to `^4.34`
+* Added handling of now deprecated methods of the SDK 
+* The predefined service classes can now be overridden via parameters
+* The bundle is now tested with all currently supported PHP and Symfony versions
+
 ## 1.3.0 - 2019-05-26
 
 * Credential autodiscovery is now disabled when the `credentials` configuration option 

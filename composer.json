@@ -12,14 +12,13 @@
         }
     ],
     "require": {
-        "kreait/firebase-php": "^4.22",
-        "symfony/dependency-injection": "^2.7|^3.3|^4.0",
-        "symfony/config": "^2.8|^3.3|^4.0",
-        "symfony/http-kernel": "^2.7|^3.3|^4.0"
+        "kreait/firebase-php": "^4.34",
+        "symfony/dependency-injection": "^2.8|^3.4|^4.0",
+        "symfony/config": "^2.8|^3.4|^4.0",
+        "symfony/http-kernel": "^2.8|^3.4|^4.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "phpunit/phpunit": "^6.0|^7.0"
+        "symfony/phpunit-bridge": "^4.3.4"
     },
     "autoload": {
         "psr-4": {
