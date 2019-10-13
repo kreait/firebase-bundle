@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.4.0 - 2019-10-13
 
 * Updated `kreait/firebase-php` to `^4.34`
 * Added handling of now deprecated methods of the SDK 
