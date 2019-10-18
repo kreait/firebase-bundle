@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Updated `kreait/firebase-php` to `^4.35`
+
 ## 1.4.0 - 2019-10-13
 
 * Updated `kreait/firebase-php` to `^4.34`

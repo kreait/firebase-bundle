@@ -33,7 +33,7 @@ return [
     Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
 ];
 ```
-### Configuration
+## Configuration
 
 ```yaml
 # app/config/config.yml (Symfony without Flex)

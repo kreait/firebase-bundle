@@ -27,8 +27,6 @@ class FirebaseExtensionTest extends TestCase
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation %s is deprecated. Use the component-specific create*() methods instead.
      */
     public function a_project_can_have_an_alias()
     {
