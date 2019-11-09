@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection;
 
 use Kreait\Firebase;
+use Kreait\Firebase\Auth;
+use Kreait\Firebase\Database;
+use Kreait\Firebase\Firestore;
+use Kreait\Firebase\Messaging;
+use Kreait\Firebase\RemoteConfig;
+use Kreait\Firebase\Storage;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
@@ -25,7 +31,13 @@ class FirebaseExtension extends Extension
      */
     private $defaultProject;
 
-    public function load(array $configs, ContainerBuilder $container)
+    /**
+     * @param array $configs
+     * @param ContainerBuilder $container
+     *
+     * @throws \Exception
+     */
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
@@ -46,20 +58,16 @@ class FirebaseExtension extends Extension
         }
     }
 
-    private function processProjectConfiguration($name, array $config, ContainerBuilder $container): string
+    private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container): string
     {
-        $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
-        $isPublic = $config['public'];
-
-        $container->register($projectServiceId, Firebase::class)
-            ->setFactory([new Reference(ProjectFactory::class), 'create'])
-            ->addArgument($config)
-            ->setPublic($isPublic);
-
-        if ($config['alias'] ?? null) {
-            $container->setAlias($config['alias'], $projectServiceId);
-            $container->getAlias($config['alias'])->setPublic($isPublic);
-        }
+        $this->registerService($name . '.factory',       $config, $container, 'createFactory');
+        $this->registerService($name . '.database',      $config, $container, 'createDatabase');
+        $this->registerService($name . '.auth',          $config, $container, 'createAuth');
+        $this->registerService($name . '.storage',       $config, $container, 'createStorage');
+        $this->registerService($name . '.remote_config', $config, $container, 'createRemoteConfig');
+        $this->registerService($name . '.messaging',     $config, $container, 'createMessaging');
+        $this->registerService($name . '.firestore',     $config, $container, 'createFirestore');
+        $projectServiceId = $this->registerService($name,       $config, $container);
 
         if ($this->defaultProject && $config['default']) {
             throw new InvalidConfigurationException('Only one project can be set as default.');
@@ -72,13 +80,48 @@ class FirebaseExtension extends Extension
         return $projectServiceId;
     }
 
-    public function getAlias()
+    /**
+     * @return string
+     */
+    public function getAlias(): string
     {
         return 'kreait_firebase';
     }
 
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     *
+     * @return Configuration
+     */
+    public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
         return new Configuration($this->getAlias());
+    }
+
+    /**
+     * @param string $name
+     * @param array $config
+     * @param ContainerBuilder $container
+     * @param string $method
+     *
+     * @return string
+     */
+    private function registerService(string $name, array $config, ContainerBuilder $container, string $method = 'create'): string
+    {
+        $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
+        $isPublic = $config['public'];
+
+        $container->register($projectServiceId, Firebase::class)
+            ->setFactory([new Reference(ProjectFactory::class), $method])
+            ->addArgument($config)
+            ->setPublic($isPublic);
+
+        if ($config['alias'] ?? null) {
+            $container->setAlias($config['alias'], $projectServiceId);
+            $container->getAlias($config['alias'])->setPublic($isPublic);
+        }
+
+        return $projectServiceId;
     }
 }
