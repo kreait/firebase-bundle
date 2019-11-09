@@ -28,6 +28,29 @@ class FirebaseExtensionTest extends TestCase
     /**
      * @test
      */
+    public function a_project_is_created_with_a_service_for_each_feature()
+    {
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'alias' => 'bar',
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf(Firebase::class, $container->get($this->extension->getAlias().'.foo'));
+        $this->assertInstanceOf(Firebase\Factory::class, $container->get($this->extension->getAlias().'.foo.factory'));
+        $this->assertInstanceOf(Firebase\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
+        $this->assertInstanceOf(Firebase\Auth::class, $container->get($this->extension->getAlias().'.foo.auth'));
+        $this->assertInstanceOf(Firebase\Storage::class, $container->get($this->extension->getAlias().'.foo.storage'));
+        $this->assertInstanceOf(Firebase\RemoteConfig::class, $container->get($this->extension->getAlias().'.foo.remote_config'));
+        $this->assertInstanceOf(Firebase\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
+    }
+
+    /**
+     * @test
+     */
     public function a_project_can_have_an_alias()
     {
         $container = $this->createContainer([
