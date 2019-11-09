@@ -30,18 +30,27 @@ class FirebaseExtensionTest extends TestCase
             'projects' => [
                 'foo' => [
                     'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                    'alias' => 'bar',
                 ],
             ],
         ]);
 
         $this->assertInstanceOf(Firebase::class, $container->get($this->extension->getAlias().'.foo'));
-        $this->assertInstanceOf(Firebase\Factory::class, $container->get($this->extension->getAlias().'.foo.factory'));
+        $this->assertInstanceOf(Firebase::class, $container->get(Firebase::class));
+
         $this->assertInstanceOf(Firebase\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
+        $this->assertInstanceOf(Firebase\Database::class, $container->get(Firebase\Database::class));
+
         $this->assertInstanceOf(Firebase\Auth::class, $container->get($this->extension->getAlias().'.foo.auth'));
+        $this->assertInstanceOf(Firebase\Auth::class, $container->get(Firebase\Auth::class));
+
         $this->assertInstanceOf(Firebase\Storage::class, $container->get($this->extension->getAlias().'.foo.storage'));
+        $this->assertInstanceOf(Firebase\Storage::class, $container->get(Firebase\Storage::class));
+
         $this->assertInstanceOf(Firebase\RemoteConfig::class, $container->get($this->extension->getAlias().'.foo.remote_config'));
+        $this->assertInstanceOf(Firebase\RemoteConfig::class, $container->get(Firebase\RemoteConfig::class));
+
         $this->assertInstanceOf(Firebase\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
+        $this->assertInstanceOf(Firebase\Messaging::class, $container->get(Firebase\Messaging::class));
     }
 
     /** @test */

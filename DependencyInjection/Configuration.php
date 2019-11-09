@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
                                 ->info('If set to false, the service and its alias can only be used via dependency injection, and not be retrieved from the container directly.')
                             ->end()
                             ->scalarNode('default')
-                                ->defaultFalse()
+                                ->defaultNull()
                                 ->info('If set to true, this project will be used when type hinting the component classes of the Firebase SDK, e.g. Kreait\\Firebase\\Auth, Kreait\\Firebase\\Database, Kreait\\Firebase\\Messaging, etc.')
                             ->end()
                             ->scalarNode('database_uri')
