@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+* Each Firebase SDK component is now individually registered and accessible ([#16](https://github.com/kreait/firebase-bundle/pull/16)).
+* Using the `Kreait\Firebase` class is deprecated, please use the individual components instead.
+* Defining an alias for the `Kreait\Firebase` service is deprecated, please also use the individual components instead.
+
 ## 1.5.0 - 2019-10-18
 
 * Updated `kreait/firebase-php` to `^4.35`
@@ -31,7 +37,7 @@
 
 * A project can be defined as the default project.
 * If only one project is configured, it is considered the default project.
-* The default project is aliased to the `Kreait\Firebase` class (usefule for Dependency Injection/Autowiring) 
+* The default project is aliased to the `Kreait\Firebase` class (useful for Dependency Injection/Autowiring) 
 
 ## 1.0.0 - 2018-04-06
 

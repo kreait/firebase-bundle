@@ -16,14 +16,10 @@ use Throwable;
 
 class FirebaseExtension extends Extension
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     private $projects = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $defaultProject;
 
     /**
@@ -75,33 +71,16 @@ class FirebaseExtension extends Extension
         return $projectServiceId;
     }
 
-    /**
-     * @return string
-     */
     public function getAlias(): string
     {
         return 'kreait_firebase';
     }
 
-    /**
-     * @param array $config
-     * @param ContainerBuilder $container
-     *
-     * @return Configuration
-     */
     public function getConfiguration(array $config, ContainerBuilder $container): Configuration
     {
         return new Configuration($this->getAlias());
     }
 
-    /**
-     * @param string $name
-     * @param array $config
-     * @param ContainerBuilder $container
-     * @param string $method
-     *
-     * @return string
-     */
     private function registerService(string $name, array $config, ContainerBuilder $container, string $method = 'create'): string
     {
         $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);

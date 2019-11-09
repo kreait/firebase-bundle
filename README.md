@@ -35,34 +35,55 @@ return [
 ```
 ## Configuration
 
+### Minimal
+
 ```yaml
 # app/config/config.yml (Symfony without Flex)
 # config/packages/firebase.yaml (Symfony with Flex)
 kreait_firebase:
     projects:
-        # You can access your firebase project with
-        # $container->get('kreait_firebase.first')
-        first:
-            # Optional: If set to false, the service and its alias
-            # can only be used via dependency injection
+        my_project:
+            credentials: '%kernel.project_dir%/config/my_project_credentials.json'
+        other_project: # optional
+            credentials: '%kernel.project_dir%/config/other_project_credentials.json'
+```
+
+The following services will be available for your project:
+
+* `kreait_firebase.my_project.auth`
+* `kreait_firebase.my_project.database`
+* `kreait_firebase.my_project.firestore`
+* `kreait_firebase.my_project.messaging`
+* `kreait_firebase.my_project.remote_config`
+* `kreait_firebase.my_project.storage`
+
+* `kreait_firebase.other_project.*`
+
+### Full
+
+```yaml
+# app/config/config.yml (Symfony without Flex)
+# config/packages/firebase.yaml (Symfony with Flex)
+kreait_firebase:
+    projects:
+        my_project:
+            # Optional: Path to the project's Service Account credentials file
+            # If omitted, the credentials will be auto-dicovered as described
+            # in https://firebase-php.readthedocs.io/en/stable/setup.html#with-autodiscovery
+            credentials: '%kernel.project_dir%/config/my_project_credentials.json'
+            # Optional: If set to true, this project will be used when 
+            # type hinting the component classes of the Firebase SDK,
+            # e.g. Kreait\Firebase\Auth, Kreait\Firebase\Database,
+            # Kreait\Firebase\Messaging, etc.
+            default: false 
+            # Optional: If set to false, the service and its alias can only be
+            # used via dependency injection, and not be retrieved from the
+            # container directly.
             public: true
-            # Optional: If set to true, this project is used when
-            # using Kreait\Firebase as a type hint for dependency injection
-            default: false
-            # Optional: Path to the projects Service Account credentials file
-            # If omitted, the library will try to discover it.
-            credentials: '%kernel.project_dir%/config/service_account_credentials.json'
-            # You can find the database URI at 
-            # https://console.firebase.google.com/project/first/database/data
-            database_uri: 'https://my-project.firebaseio.com'
-            # Optional: If set, you can access your project with
-            # $container->get('firebase') 
-            alias: 'firebase'
-        second: # $container->get('kreait_firebase.second')
-            database_uri: 'https://second.firebaseio.com'
-        third: # $container->get('kreait_firebase.third')
-            ...
-        
+            # Optional: Should only be used if the URL of your Realtime
+            # Database can not be generated with the project id of the 
+            # given Service Account
+            database_uri: 'https://my_project.firebaseio.com'
 ```
 
 ## Support

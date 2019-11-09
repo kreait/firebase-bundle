@@ -15,9 +15,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 class FirebaseExtensionTest extends TestCase
 {
-    /**
-     * @var FirebaseExtension
-     */
+    /** @var FirebaseExtension */
     private $extension;
 
     protected function setUp()
@@ -25,9 +23,7 @@ class FirebaseExtensionTest extends TestCase
         $this->extension = new FirebaseExtension();
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function a_project_is_created_with_a_service_for_each_feature()
     {
         $container = $this->createContainer([
@@ -48,9 +44,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertInstanceOf(Firebase\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function a_project_can_have_an_alias()
     {
         $container = $this->createContainer([
@@ -65,9 +59,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertSame($container->get($this->extension->getAlias().'.foo'), $container->get('bar'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function a_project_can_be_private()
     {
         $container = $this->createContainer([
@@ -84,9 +76,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertFalse($container->has('bar'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_can_provide_multiple_projects()
     {
         $container = $this->createContainer([
@@ -104,9 +94,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.bar'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_supports_specifying_credentials()
     {
         $container = $this->createContainer([
@@ -120,9 +108,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo'));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_accepts_only_one_default_project()
     {
         $this->expectException(InvalidConfigurationException::class);
@@ -141,9 +127,7 @@ class FirebaseExtensionTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_aliases_the_firebase_class_to_the_default_project()
     {
         $container = $this->createContainer([
@@ -161,9 +145,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasAlias(Firebase::class));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_aliases_the_firebase_class_to_the_only_project()
     {
         $container = $this->createContainer([
@@ -177,9 +159,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasAlias(Firebase::class));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function it_has_no_default_project_if_none_could_be_determined()
     {
         $container = $this->createContainer([
@@ -196,7 +176,7 @@ class FirebaseExtensionTest extends TestCase
         $this->assertFalse($container->hasAlias(Firebase::class));
     }
 
-    protected function createContainer(array $config = [], $makeServicesPublic = false)
+    private function createContainer(array $config = [], $makeServicesPublic = false): ContainerBuilder
     {
         $container = new ContainerBuilder();
 
@@ -205,11 +185,11 @@ class FirebaseExtensionTest extends TestCase
             $container->addCompilerPass(new class() implements CompilerPassInterface {
                 public function process(ContainerBuilder $container)
                 {
-                    array_map(function (Definition $definition) {
+                    array_map(static function (Definition $definition) {
                         $definition->setPublic(true);
                     }, $container->getDefinitions());
 
-                    array_map(function (Alias $alias) {
+                    array_map(static function (Alias $alias) {
                         $alias->setPublic(true);
                     }, $container->getAliases());
                 }

@@ -9,9 +9,7 @@ use Kreait\Firebase\Factory;
 
 class ProjectFactory
 {
-    /**
-     * @var Factory
-     */
+    /** @var Factory */
     private $firebaseFactory;
 
     public function __construct(Factory $firebaseFactory)
@@ -19,11 +17,6 @@ class ProjectFactory
         $this->firebaseFactory = $firebaseFactory;
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Factory
-     */
     public function createFactory(array $config = []): Factory
     {
         $factory = clone $this->firebaseFactory; // Ensure a new instance
@@ -42,95 +35,38 @@ class ProjectFactory
         return $factory;
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase
-     *
-     * @deprecated use the component-specific create*() methods instead
-     * @see createAuth()
-     * @see createDatabase()
-     * @see createFirestore()
-     * @see createMessaging()
-     * @see createRemoteConfig()
-     * @see createStorage()
-     */
     public function create(array $config = []): Firebase
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->create();
+        return $this->createFactory($config)->create();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\Auth
-     */
     public function createAuth(array $config = []): Firebase\Auth
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createAuth();
+        return $this->createFactory($config)->createAuth();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\Database
-     */
     public function createDatabase(array $config = []): Firebase\Database
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createDatabase();
+        return $this->createFactory($config)->createDatabase();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\Firestore
-     */
     public function createFirestore(array $config = []): Firebase\Firestore
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createFirestore();
+        return $this->createFactory($config)->createFirestore();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\Messaging
-     */
     public function createMessaging(array $config = []): Firebase\Messaging
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createMessaging();
+        return $this->createFactory($config)->createMessaging();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\RemoteConfig
-     */
     public function createRemoteConfig(array $config = []): Firebase\RemoteConfig
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createRemoteConfig();
+        return $this->createFactory($config)->createRemoteConfig();
     }
 
-    /**
-     * @param array $config
-     *
-     * @return Firebase\Storage
-     */
     public function createStorage(array $config = []): Firebase\Storage
     {
-        $factory = $this->createFactory($config);
-
-        return $factory->createStorage();
+        return $this->createFactory($config)->createStorage();
     }
 }

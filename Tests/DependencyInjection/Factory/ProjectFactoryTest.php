@@ -10,14 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 class ProjectFactoryTest extends TestCase
 {
-    /**
-     * @var ProjectFactory
-     */
+    /** @var ProjectFactory */
     private $factory;
 
-    /**
-     * @var FirebaseFactory|\PHPUnit_Framework_MockObject_MockObject
-     */
     private $firebaseFactory;
 
     protected function setUp()
