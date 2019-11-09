@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.6.0 - 2019-11-09
 
 * Each Firebase SDK component is now individually registered and accessible ([#16](https://github.com/kreait/firebase-bundle/pull/16)).
 * Using the `Kreait\Firebase` class is deprecated, please use the individual components instead.
