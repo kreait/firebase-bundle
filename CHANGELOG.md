@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.6.1 - 2019-11-19
 
 * Upgraded [symfony/dependency-injection](https://packagist.org/packages/symfony/dependency-injection) to avoid
   [CVE-2019-10910](https://github.com/advisories/GHSA-pgwj-prpq-jpc2)
