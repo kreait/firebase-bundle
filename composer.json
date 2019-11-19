@@ -13,7 +13,7 @@
     ],
     "require": {
         "kreait/firebase-php": "^4.35",
-        "symfony/dependency-injection": "^2.8|^3.4|^4.0",
+        "symfony/dependency-injection": "^2.8.50|^3.4.26|^4.1.12",
         "symfony/config": "^2.8|^3.4|^4.0",
         "symfony/http-kernel": "^2.8|^3.4|^4.0"
     },

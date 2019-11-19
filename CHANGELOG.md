@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Upgraded [symfony/dependency-injection](https://packagist.org/packages/symfony/dependency-injection) to avoid
+  [CVE-2019-10910](https://github.com/advisories/GHSA-pgwj-prpq-jpc2)
+
 ## 1.6.0 - 2019-11-09
 
 * Each Firebase SDK component is now individually registered and accessible ([#16](https://github.com/kreait/firebase-bundle/pull/16)).
