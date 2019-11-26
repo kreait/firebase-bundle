@@ -13,26 +13,19 @@ env:
 matrix:
   fast_finish: true
   include:
-      # Minimum supported dependencies with the latest and oldest PHP version
-    - php: 7.3
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="weak_vendors"
     - php: 7.0
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="weak_vendors"
-
+      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
+    - php: 7.0
+      env: DEPENDENCIES="symfony/lts:^2"
+    - php: 7.0
+      env: DEPENDENCIES="symfony/lts:^3"
       # Test the latest stable release
     - php: 7.0
     - php: 7.1
     - php: 7.2
+      env: SYMFONY_PHPUNIT_VERSION="7.4"
     - php: 7.3
-      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
-
-      # Test LTS versions. This makes sure we do not use Symfony packages with version greater
-      # than 2 or 3 respectively. Read more at https://github.com/symfony/lts
-    - php: 7.3
-      env: DEPENDENCIES="symfony/lts:^2"
-    - php: 7.3
-      env: DEPENDENCIES="symfony/lts:^3"
-
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text" SYMFONY_PHPUNIT_VERSION="7.4"
       # Latest commit to master
     - php: 7.3
       env: STABILITY="dev" SYMFONY_PHPUNIT_VERSION="7.4"

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Added support for Symfony 5.x
+
 ## 1.6.1 - 2019-11-19
 
 * Upgraded [symfony/dependency-injection](https://packagist.org/packages/symfony/dependency-injection) to avoid
