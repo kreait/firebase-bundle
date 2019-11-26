@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.7.0 - 2019-11-26
 
 * Added support for Symfony 5.x
 
