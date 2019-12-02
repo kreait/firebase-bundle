@@ -16,8 +16,6 @@ matrix:
     - php: 7.0
       env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
     - php: 7.0
-      env: DEPENDENCIES="symfony/lts:^2"
-    - php: 7.0
       env: DEPENDENCIES="symfony/lts:^3"
       # Test the latest stable release
     - php: 7.0
