@@ -9,6 +9,7 @@ use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
@@ -47,7 +48,7 @@ class FirebaseExtension extends Extension
     private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container)
     {
         $this->registerService($name.'.database', $config, Firebase\Database::class, $container, 'createDatabase');
-        $this->registerService($name.'.auth', $config, Firebase\Auth::class, $container, 'createAuth');
+        $this->registerService($name.'.auth', $config, Firebase\Auth::class, $container, 'createFactory');
         $this->registerService($name.'.storage', $config, Firebase\Storage::class, $container, 'createStorage');
         $this->registerService($name.'.remote_config', $config, Firebase\RemoteConfig::class, $container, 'createRemoteConfig');
         $this->registerService($name.'.messaging', $config, Firebase\Messaging::class, $container, 'createMessaging');
@@ -70,10 +71,26 @@ class FirebaseExtension extends Extension
         $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
 
-        $container->register($projectServiceId, $class)
-            ->setFactory([new Reference(ProjectFactory::class), $method])
-            ->addArgument($config)
-            ->setPublic($isPublic);
+        if ($class === Firebase\Auth::class) {
+            $authDefinition = (new Definition($class))
+                                ->setFactory([new Reference(ProjectFactory::class), $method])
+                                ->addArgument($config)
+                                ->setPublic($isPublic);
+            if (isset($config['cache']['id'])) {
+                $authDefinition
+                    ->addMethodCall('withVerifierCache', [
+                        new Reference($config['cache']['id'])
+                    ], true);
+            }
+
+            $authDefinition->addMethodCall('createAuth', [], true);
+            $container->setDefinition($projectServiceId, $authDefinition);
+        } else {
+            $container->register($projectServiceId, $class)
+                      ->setFactory([new Reference(ProjectFactory::class), $method])
+                      ->addArgument($config)
+                      ->setPublic($isPublic);
+        }
 
         if ($config['alias'] ?? null) {
             $container->setAlias($config['alias'], $projectServiceId);

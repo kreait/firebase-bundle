@@ -18,7 +18,7 @@ class FirebaseExtensionTest extends TestCase
     /** @var FirebaseExtension */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new FirebaseExtension();
     }

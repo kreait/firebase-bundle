@@ -15,7 +15,7 @@ class ProjectFactoryTest extends TestCase
 
     private $firebaseFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->firebaseFactory = $this->createMock(FirebaseFactory::class);
         $this->factory = new ProjectFactory($this->firebaseFactory);

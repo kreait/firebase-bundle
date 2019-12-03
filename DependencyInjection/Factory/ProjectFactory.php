@@ -40,6 +40,12 @@ class ProjectFactory
         return $this->createFactory($config)->create();
     }
 
+    /**
+     * @param array $config
+     * @deprecated Don't need to be used anymore
+     *
+     * @return Firebase\Auth
+     */
     public function createAuth(array $config = []): Firebase\Auth
     {
         return $this->createFactory($config)->createAuth();
