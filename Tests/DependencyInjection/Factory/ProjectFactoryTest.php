@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Symfony\Bundle\Tests\DependencyInjection\Factory;
 use Kreait\Firebase\Factory as FirebaseFactory;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use PHPUnit\Framework\TestCase;
+use Psr\SimpleCache\CacheInterface;
 
 class ProjectFactoryTest extends TestCase
 {
@@ -48,5 +49,23 @@ class ProjectFactoryTest extends TestCase
             ->method('withServiceAccount');
 
         $this->factory->create(['credentials' => __DIR__.'/../../_fixtures/valid_credentials.json']);
+    }
+
+    /**
+     * @test
+     * @group legacy
+     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
+     */
+    public function it_accepts_a_verifier_cache()
+    {
+        $cache = $this->createMock(CacheInterface::class);
+
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withVerifierCache')
+            ->with($cache);
+
+        $this->factory->setVerifierCache($cache);
+        $this->factory->create([]);
     }
 }

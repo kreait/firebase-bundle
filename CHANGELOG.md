@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped support for unsupported Symfony releases, supported are `^3.4|^4.2|^5.0`
+* Made the Cache used to cache Google's Public Keys for ID Token verification configurable  
 
 ## 1.7.0 - 2019-11-26
 

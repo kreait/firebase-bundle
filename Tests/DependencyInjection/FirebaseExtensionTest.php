@@ -7,11 +7,15 @@ namespace Kreait\Firebase\Symfony\Bundle\Tests\DependencyInjection;
 use Kreait\Firebase;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\FirebaseExtension;
 use PHPUnit\Framework\TestCase;
+use Psr\SimpleCache\CacheInterface;
+use stdClass;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use TypeError;
 
 class FirebaseExtensionTest extends TestCase
 {
@@ -54,6 +58,64 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
+    public function a_verifier_cache_can_be_used()
+    {
+        $cacheServiceId = 'cache.app.simple.mock';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'verifier_cache' => $cacheServiceId,
+                ],
+            ],
+        ]);
+        $cache = $this->createMock(CacheInterface::class);
+        $container->set($cacheServiceId, $cache);
+
+        $container->get(Firebase\Auth::class);
+        $this->addToAssertionCount(1);
+    }
+
+    /** @test */
+    public function an_invalid_verifier_cache_can_not_be_used()
+    {
+        $cacheServiceId = 'invalid_cache_service';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'verifier_cache' => $cacheServiceId,
+                ],
+            ],
+        ]);
+        $invalidCache = $this->createMock(stdClass::class);
+        $container->set($cacheServiceId, $invalidCache);
+
+        $this->expectException(TypeError::class);
+        $container->get(Firebase\Auth::class);
+    }
+
+    /** @test */
+    public function a_non_existing_verifier_cache_can_not_be_used()
+    {
+        $cacheServiceId = 'nonexisting';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'verifier_cache' => $cacheServiceId,
+                ],
+            ],
+        ]);
+
+        $this->expectException(ServiceNotFoundException::class);
+        $container->get(Firebase\Auth::class);
+    }
+
+    /** @test */
     public function a_project_can_have_an_alias()
     {
         $container = $this->createContainer([
@@ -80,6 +142,7 @@ class FirebaseExtensionTest extends TestCase
                 ],
             ],
         ]);
+        $container->compile();
 
         $this->assertFalse($container->has($this->extension->getAlias().'.foo'));
         $this->assertFalse($container->has('bar'));
@@ -206,8 +269,6 @@ class FirebaseExtensionTest extends TestCase
         }
 
         $this->extension->load([$this->extension->getAlias() => $config], $container);
-
-        $container->compile();
 
         return $container;
     }
