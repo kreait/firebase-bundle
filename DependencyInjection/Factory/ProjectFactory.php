@@ -6,15 +6,24 @@ namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory;
 
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
+use Psr\SimpleCache\CacheInterface;
 
 class ProjectFactory
 {
     /** @var Factory */
     private $firebaseFactory;
 
+    /** @var CacheInterface|null */
+    private $verifierCache;
+
     public function __construct(Factory $firebaseFactory)
     {
         $this->firebaseFactory = $firebaseFactory;
+    }
+
+    public function setVerifierCache(CacheInterface $verifierCache = null)
+    {
+        $this->verifierCache = $verifierCache;
     }
 
     public function createFactory(array $config = []): Factory
@@ -30,6 +39,10 @@ class ProjectFactory
 
         if ($config['database_uri'] ?? null) {
             $factory = $factory->withDatabaseUri($config['database_uri']);
+        }
+
+        if ($this->verifierCache) {
+            $factory = $factory->withVerifierCache($this->verifierCache);
         }
 
         return $factory;

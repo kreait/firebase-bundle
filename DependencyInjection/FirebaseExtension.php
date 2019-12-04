@@ -70,8 +70,14 @@ class FirebaseExtension extends Extension
         $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
 
+        $factory = $container->getDefinition(ProjectFactory::class);
+
+        if ($config['verifier_cache'] ?? null) {
+            $factory->addMethodCall('setVerifierCache', [new Reference($config['verifier_cache'])]);
+        }
+
         $container->register($projectServiceId, $class)
-            ->setFactory([new Reference(ProjectFactory::class), $method])
+            ->setFactory([$factory, $method])
             ->addArgument($config)
             ->setPublic($isPublic);
 
