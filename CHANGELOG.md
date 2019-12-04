@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.8.0 - 2019-12-04
 
 * Dropped support for unsupported Symfony releases, supported are `^3.4|^4.2|^5.0`
 * Made the Cache used to cache Google's Public Keys for ID Token verification configurable  
