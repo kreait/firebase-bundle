@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Service Account credentials can now be provided as an array as well ([#20](https://github.com/kreait/firebase-bundle/pull/20))
+
 ## 1.8.0 - 2019-12-04
 
 * Dropped support for unsupported Symfony releases, supported are `^3.4|^4.2|^5.0`
