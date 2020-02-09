@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## 1.9.0 - 2020-02-09
 
-* Service Account credentials can now be provided as an array as well ([#20](https://github.com/kreait/firebase-bundle/pull/20))
+* Service Account credentials can now be provided as an array ([#20](https://github.com/kreait/firebase-bundle/pull/20))
 
 ## 1.8.0 - 2019-12-04
 
