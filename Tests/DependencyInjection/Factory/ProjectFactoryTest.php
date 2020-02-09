@@ -56,6 +56,38 @@ class ProjectFactoryTest extends TestCase
      * @group legacy
      * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
+    public function it_can_handle_a_credentials_string()
+    {
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withServiceAccount');
+
+        $credentials = file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json');
+
+        $this->factory->create(['credentials' => $credentials]);
+    }
+
+    /**
+     * @test
+     * @group legacy
+     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
+     */
+    public function it_can_handle_a_credentials_array()
+    {
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withServiceAccount');
+
+        $credentials = json_decode(file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json'), true);
+
+        $this->factory->create(['credentials' => $credentials]);
+    }
+
+    /**
+     * @test
+     * @group legacy
+     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
+     */
     public function it_accepts_a_verifier_cache()
     {
         $cache = $this->createMock(CacheInterface::class);
