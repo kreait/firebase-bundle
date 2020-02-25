@@ -45,7 +45,13 @@ kreait_firebase:
         my_project:
             credentials: '%kernel.project_dir%/config/my_project_credentials.json'
         other_project: # optional
-            credentials: '%kernel.project_dir%/config/other_project_credentials.json'
+            credentials: # another way of adding credentials
+                type: 'service_account'
+                project_id: 'project-name' 
+                client_id: '1234567890'
+                client_email: 'example@example.com'
+                private_key_id: '1234567890abcdefghijklmn'
+                private_key: '-----BEGIN PRIVATE KEY secret key here \n-----END PRIVATE KEY-----\n'   
 ```
 
 The following services will be available for your project:
