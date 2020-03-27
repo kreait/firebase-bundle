@@ -84,6 +84,8 @@ kreait_firebase:
             # Database can not be generated with the project id of the 
             # given Service Account
             database_uri: 'https://my_project.firebaseio.com'
+            # Optional: Default domain for Dynamic Links
+            dynamic_links_default_domain: 'https://my_project.page.link'
             # Optional: Used to cache Google's public keys. Must implement
             # \Psr\SimpleCache\CacheInterface (PSR-16)
             verifier_cache: 'cache.app.simple'
