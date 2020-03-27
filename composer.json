@@ -1,8 +1,8 @@
 {
-    "name": "kreait/firebase-bundle",
-    "description": "Symfony Bundle for the Firebase Admin SDK",
+    "name": "computerrock/firebase-bundle",
+    "description": "Symfony Bundle for the Firebase Admin SDK, fork of kreait/firebase-bundle",
     "keywords": ["firebase", "google", "sdk", "api", "database", "symfony", "bundle", "symfony-bundle"],
-    "homepage": "https://github.com/kreait/firebase-bundle",
+    "homepage": "https://github.com/computerrock/firebase-bundle",
     "license": "MIT",
     "type": "symfony-bundle",
     "authors": [
