@@ -52,6 +52,7 @@ class FirebaseExtension extends Extension
         $this->registerService($name.'.remote_config', $config, Firebase\RemoteConfig::class, $container, 'createRemoteConfig');
         $this->registerService($name.'.messaging', $config, Firebase\Messaging::class, $container, 'createMessaging');
         $this->registerService($name.'.firestore', $config, Firebase\Firestore::class, $container, 'createFirestore');
+        $this->registerService($name.'.dynamic_links', $config, Firebase\DynamicLinks::class, $container, 'createDynamicLinksService');
         $this->registerService($name, $config, Firebase::class, $container, 'create');
     }
 

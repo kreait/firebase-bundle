@@ -55,6 +55,9 @@ class FirebaseExtensionTest extends TestCase
 
         $this->assertInstanceOf(Firebase\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
         $this->assertInstanceOf(Firebase\Messaging::class, $container->get(Firebase\Messaging::class));
+
+        $this->assertInstanceOf(Firebase\DynamicLinks::class, $container->get($this->extension->getAlias().'.foo.dynamic_links'));
+        $this->assertInstanceOf(Firebase\DynamicLinks::class, $container->get(Firebase\DynamicLinks::class));
     }
 
     /** @test */

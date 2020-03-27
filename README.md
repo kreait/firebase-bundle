@@ -56,6 +56,7 @@ The following services will be available for your project:
 * `kreait_firebase.my_project.messaging`
 * `kreait_firebase.my_project.remote_config`
 * `kreait_firebase.my_project.storage`
+* `kreait_firebase.my_project.dynamic_links`
 
 * `kreait_firebase.other_project.*`
 
@@ -84,6 +85,8 @@ kreait_firebase:
             # Database can not be generated with the project id of the 
             # given Service Account
             database_uri: 'https://my_project.firebaseio.com'
+            # Optional: Default domain for Dynamic Links
+            default_dynamic_links_domain: 'https://my_project.page.link'
             # Optional: Used to cache Google's public keys. Must implement
             # \Psr\SimpleCache\CacheInterface (PSR-16)
             verifier_cache: 'cache.app.simple'
