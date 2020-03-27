@@ -82,4 +82,10 @@ class ProjectFactory
     {
         return $this->createFactory($config)->createStorage();
     }
+
+    public function createDynamicLinksService(array $config = []): Firebase\DynamicLinks
+    {
+        $defaultDynamicLinksDomain = $config['dynamic_links_default_domain'] ?? null;
+        return $this->createFactory($config)->createDynamicLinksService($defaultDynamicLinksDomain);
+    }
 }
