@@ -56,6 +56,7 @@ The following services will be available for your project:
 * `kreait_firebase.my_project.messaging`
 * `kreait_firebase.my_project.remote_config`
 * `kreait_firebase.my_project.storage`
+* `kreait_firebase.my_project.dynamic_links`
 
 * `kreait_firebase.other_project.*`
 
