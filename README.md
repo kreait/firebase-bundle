@@ -7,6 +7,7 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
 [![Total Downloads](https://img.shields.io/packagist/dt/kreait/firebase-bundle.svg)]()
 [![Discord](https://img.shields.io/discord/523866370778333184.svg?color=7289da&logo=discord)](https://discord.gg/nbgVfty)
+[![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
 
 ---
 
