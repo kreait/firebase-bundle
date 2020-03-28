@@ -28,9 +28,9 @@ matrix:
       env: SYMFONY_REQUIRE="5.0.*" SYMFONY_PHPUNIT_VERSION="7.4"
     - php: 7.3
       env: SYMFONY_PHPUNIT_VERSION="7.4"
-    - php: 7.4snapshot
+    - php: 7.4
       env: SYMFONY_PHPUNIT_VERSION="7.4"
-    - php: 7.4snapshot
+    - php: 7.4
       env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text" SYMFONY_PHPUNIT_VERSION="7.4"
 
   allow_failures:
