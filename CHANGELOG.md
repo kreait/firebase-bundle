@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Unreleased
+## 1.10.0 - 2020-03-28
   
-* Update dev-dependency on `symfony/cache` to address [CVE-2019-10912](https://github.com/advisories/GHSA-w2fr-65vp-mxw3) 
+* Updated dev-dependency on `symfony/cache` to address [CVE-2019-10912](https://github.com/advisories/GHSA-w2fr-65vp-mxw3)
+* Added support for Firebase Dynamic Links ([#22](https://github.com/kreait/firebase-bundle/pull/22))
 
 ## 1.9.0 - 2020-02-09
 
