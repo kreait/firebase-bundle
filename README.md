@@ -9,7 +9,19 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![Discord](https://img.shields.io/discord/523866370778333184.svg?color=7289da&logo=discord)](https://discord.gg/nbgVfty)
 [![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
 
----
+## Table of Contents
+
+- [Overview](#overview)
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Support](#support)
+- [License](#license)
+
+## Overview
+
+[Firebase](https://firebase.google.com/) provides the tools and infrastructure you need to develop your app, grow your user base, and earn money. The Firebase Admin PHP SDK enables access to Firebase services from privileged environments (such as servers or cloud) in PHP.
+
+For more information, visit the [Firebase Admin PHP SDK documentation](https://firebase-php.readthedocs.io/).
 
 ## Installation
 
@@ -34,6 +46,7 @@ return [
     Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
 ];
 ```
+
 ## Configuration
 
 ### Minimal
@@ -58,8 +71,17 @@ The following services will be available for your project:
 * `kreait_firebase.my_project.remote_config`
 * `kreait_firebase.my_project.storage`
 * `kreait_firebase.my_project.dynamic_links`
-
 * `kreait_firebase.other_project.*`
+
+The following classes will be available for dependency injection if you have configured only one project:
+
+* `Kreait\Firebase\Auth`
+* `Kreait\Firebase\Database`
+* `Kreait\Firebase\Firestore`
+* `Kreait\Firebase\Messaging`
+* `Kreait\Firebase\RemoteConfig`
+* `Kreait\Firebase\Storage`
+* `Kreait\Firebase\DynamicLinks`
 
 ### Full
 
@@ -93,10 +115,24 @@ kreait_firebase:
             verifier_cache: 'cache.app.simple'
 ```
 
+## Documentation
+
+- [Authentication Guide](https://firebase-php.readthedocs.io/en/stable/authentication.html)
+- [Cloud Messaging Guide](https://firebase-php.readthedocs.io/en/stable/cloud-messaging.html)
+- [Cloud Storage Guide](https://firebase-php.readthedocs.io/en/stable/cloud-storage.html)
+- [Dynamic Links Guide](https://firebase-php.readthedocs.io/en/stable/dynamic-links.html)
+- [Firestore Guide](https://firebase-php.readthedocs.io/en/stable/cloud-firestore.html)
+- [Realtime Database Guide](https://firebase-php.readthedocs.io/en/stable/realtime-database.html)
+- [Remote Config Guide](https://firebase-php.readthedocs.io/en/stable/remote-config.html)
+
 ## Support
 
-For bug reports and feature requests, use the [issue tracker](https://github.com/kreait/firebase-bundle/issues/).
+- [Issue Tracker](https://github.com/kreait/firebase-php/issues/)
+- [Discord Chat](https://discord.gg/nbgVfty)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase+php)
 
-For help with and discussion about the PHP SDK and Bundle, join the [Gitter Channel dedicated to this library](https://gitter.im/kreait/firebase-php).
+## License
 
-For questions about Firebase in general, use [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase) or join the [Firebase Slack Community](https://firebase.community).
+Firebase Admin PHP SDK is licensed under the [MIT License](LICENSE).
+
+Your use of Firebase is governed by the [Terms of Service for Firebase Services](https://firebase.google.com/terms/).
