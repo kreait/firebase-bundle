@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+* Update `kreait/firebase-php` to `^5.0`
+* Removed project aliases
+
 ## 1.10.0 - 2020-03-28
   
 * Updated dev-dependency on `symfony/cache` to address [CVE-2019-10912](https://github.com/advisories/GHSA-w2fr-65vp-mxw3)

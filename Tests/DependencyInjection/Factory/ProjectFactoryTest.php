@@ -16,7 +16,7 @@ class ProjectFactoryTest extends TestCase
 
     private $firebaseFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->firebaseFactory = $this->createMock(FirebaseFactory::class);
         $this->factory = new ProjectFactory($this->firebaseFactory);
@@ -24,39 +24,33 @@ class ProjectFactoryTest extends TestCase
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_custom_database_uri()
+    public function it_can_handle_a_custom_database_uri(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
             ->method('withDatabaseUri')
             ->with('http://domain.tld');
 
-        $this->factory->create(['database_uri' => 'http://domain.tld']);
+        $this->factory->createDatabase(['database_uri' => 'http://domain.tld']);
     }
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_credentials_path()
+    public function it_can_handle_a_credentials_path(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
             ->method('withServiceAccount');
 
-        $this->factory->create(['credentials' => __DIR__.'/../../_fixtures/valid_credentials.json']);
+        $this->factory->createAuth(['credentials' => __DIR__.'/../../_fixtures/valid_credentials.json']);
     }
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_credentials_string()
+    public function it_can_handle_a_credentials_string(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
@@ -64,15 +58,13 @@ class ProjectFactoryTest extends TestCase
 
         $credentials = file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json');
 
-        $this->factory->create(['credentials' => $credentials]);
+        $this->factory->createAuth(['credentials' => $credentials]);
     }
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_credentials_array()
+    public function it_can_handle_a_credentials_array(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
@@ -80,15 +72,13 @@ class ProjectFactoryTest extends TestCase
 
         $credentials = json_decode(file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json'), true);
 
-        $this->factory->create(['credentials' => $credentials]);
+        $this->factory->createAuth(['credentials' => $credentials]);
     }
 
     /**
      * @test
-     * @group legacy
-     * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_accepts_a_verifier_cache()
+    public function it_accepts_a_verifier_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);
 
@@ -98,6 +88,6 @@ class ProjectFactoryTest extends TestCase
             ->with($cache);
 
         $this->factory->setVerifierCache($cache);
-        $this->factory->create([]);
+        $this->factory->createAuth();
     }
 }

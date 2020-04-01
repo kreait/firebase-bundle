@@ -17,9 +17,6 @@ use Throwable;
 class FirebaseExtension extends Extension
 {
     /**
-     * @param array $configs
-     * @param ContainerBuilder $container
-     *
      * @throws Throwable
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -53,7 +50,6 @@ class FirebaseExtension extends Extension
         $this->registerService($name.'.messaging', $config, Firebase\Messaging::class, $container, 'createMessaging');
         $this->registerService($name.'.firestore', $config, Firebase\Firestore::class, $container, 'createFirestore');
         $this->registerService($name.'.dynamic_links', $config, Firebase\DynamicLinks::class, $container, 'createDynamicLinksService');
-        $this->registerService($name, $config, Firebase::class, $container, 'create');
     }
 
     public function getAlias(): string
@@ -81,11 +77,6 @@ class FirebaseExtension extends Extension
             ->setFactory([$factory, $method])
             ->addArgument($config)
             ->setPublic($isPublic);
-
-        if ($config['alias'] ?? null) {
-            $container->setAlias($config['alias'], $projectServiceId);
-            $container->getAlias($config['alias'])->setPublic($isPublic);
-        }
 
         if ($config['default'] ?? false) {
             $container->setAlias($class, $projectServiceId);

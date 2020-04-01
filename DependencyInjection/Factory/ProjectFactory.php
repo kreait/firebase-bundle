@@ -31,9 +31,8 @@ class ProjectFactory
         $factory = clone $this->firebaseFactory; // Ensure a new instance
 
         if ($config['credentials'] ?? null) {
-            $serviceAccount = Firebase\ServiceAccount::fromValue($config['credentials']);
             $factory = $factory
-                ->withServiceAccount($serviceAccount)
+                ->withServiceAccount($config['credentials'])
                 ->withDisabledAutoDiscovery();
         }
 
@@ -46,11 +45,6 @@ class ProjectFactory
         }
 
         return $factory;
-    }
-
-    public function create(array $config = []): Firebase
-    {
-        return $this->createFactory($config)->create();
     }
 
     public function createAuth(array $config = []): Firebase\Auth
@@ -86,6 +80,7 @@ class ProjectFactory
     public function createDynamicLinksService(array $config = []): Firebase\DynamicLinks
     {
         $defaultDynamicLinksDomain = $config['default_dynamic_links_domain'] ?? null;
+
         return $this->createFactory($config)->createDynamicLinksService($defaultDynamicLinksDomain);
     }
 }

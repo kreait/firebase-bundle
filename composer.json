@@ -12,15 +12,16 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "kreait/firebase-php": "^4.35",
+        "php": "^7.2",
+        "kreait/firebase-php": "^5.0",
         "symfony/cache": "^3.4|^4.2|^5.0",
         "symfony/dependency-injection": "^3.4.26|^4.2.7|^5.0",
         "symfony/config": "^3.4.26|^4.2|^5.0",
         "symfony/http-kernel": "^3.4|^4.2|^5.0"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^5.0"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {

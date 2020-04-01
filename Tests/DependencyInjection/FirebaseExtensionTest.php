@@ -22,13 +22,13 @@ class FirebaseExtensionTest extends TestCase
     /** @var FirebaseExtension */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new FirebaseExtension();
     }
 
     /** @test */
-    public function a_project_is_created_with_a_service_for_each_feature()
+    public function a_project_is_created_with_a_service_for_each_feature(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -37,9 +37,6 @@ class FirebaseExtensionTest extends TestCase
                 ],
             ],
         ]);
-
-        $this->assertInstanceOf(Firebase::class, $container->get($this->extension->getAlias().'.foo'));
-        $this->assertInstanceOf(Firebase::class, $container->get(Firebase::class));
 
         $this->assertInstanceOf(Firebase\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
         $this->assertInstanceOf(Firebase\Database::class, $container->get(Firebase\Database::class));
@@ -61,7 +58,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function a_verifier_cache_can_be_used()
+    public function a_verifier_cache_can_be_used(): void
     {
         $cacheServiceId = 'cache.app.simple.mock';
 
@@ -81,7 +78,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function an_invalid_verifier_cache_can_not_be_used()
+    public function an_invalid_verifier_cache_can_not_be_used(): void
     {
         $cacheServiceId = 'invalid_cache_service';
 
@@ -101,7 +98,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function a_non_existing_verifier_cache_can_not_be_used()
+    public function a_non_existing_verifier_cache_can_not_be_used(): void
     {
         $cacheServiceId = 'nonexisting';
 
@@ -119,28 +116,12 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function a_project_can_have_an_alias()
+    public function a_project_can_be_private(): void
     {
         $container = $this->createContainer([
             'projects' => [
                 'foo' => [
                     'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                    'alias' => 'bar',
-                ],
-            ],
-        ]);
-
-        $this->assertSame($container->get($this->extension->getAlias().'.foo'), $container->get('bar'));
-    }
-
-    /** @test */
-    public function a_project_can_be_private()
-    {
-        $container = $this->createContainer([
-            'projects' => [
-                'foo' => [
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                    'alias' => 'bar',
                     'public' => false,
                 ],
             ],
@@ -148,11 +129,10 @@ class FirebaseExtensionTest extends TestCase
         $container->compile();
 
         $this->assertFalse($container->has($this->extension->getAlias().'.foo'));
-        $this->assertFalse($container->has('bar'));
     }
 
     /** @test */
-    public function it_can_provide_multiple_projects()
+    public function it_can_provide_multiple_projects(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -165,12 +145,12 @@ class FirebaseExtensionTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo'));
-        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.bar'));
+        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo.auth'));
+        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.bar.auth'));
     }
 
     /** @test */
-    public function it_supports_specifying_credentials()
+    public function it_supports_specifying_credentials(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -180,11 +160,11 @@ class FirebaseExtensionTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo'));
+        $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo.auth'));
     }
 
     /** @test */
-    public function it_accepts_only_one_default_project()
+    public function it_accepts_only_one_default_project(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
@@ -203,7 +183,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_aliases_the_firebase_class_to_the_default_project()
+    public function it_aliases_the_firebase_class_to_the_default_project(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -217,25 +197,11 @@ class FirebaseExtensionTest extends TestCase
             ],
         ], $makeServicesPublic = true);
 
-        $this->assertTrue($container->hasAlias(Firebase::class));
+        $this->assertTrue($container->hasAlias(Firebase\Auth::class));
     }
 
     /** @test */
-    public function it_aliases_the_firebase_class_to_the_only_project()
-    {
-        $container = $this->createContainer([
-            'projects' => [
-                'foo' => [
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                ],
-            ],
-        ], $makeServicesPublic = true);
-
-        $this->assertTrue($container->hasAlias(Firebase::class));
-    }
-
-    /** @test */
-    public function it_has_no_default_project_if_none_could_be_determined()
+    public function it_has_no_default_project_if_none_could_be_determined(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -248,7 +214,7 @@ class FirebaseExtensionTest extends TestCase
             ],
         ], $makeServicesPublic = true);
 
-        $this->assertFalse($container->hasAlias(Firebase::class));
+        $this->assertFalse($container->hasAlias(Firebase\Auth::class));
     }
 
     private function createContainer(array $config = [], $makeServicesPublic = false): ContainerBuilder
@@ -258,7 +224,7 @@ class FirebaseExtensionTest extends TestCase
         // Make all services public just for testing
         if ($makeServicesPublic) {
             $container->addCompilerPass(new class() implements CompilerPassInterface {
-                public function process(ContainerBuilder $container)
+                public function process(ContainerBuilder $container): void
                 {
                     array_map(static function (Definition $definition) {
                         $definition->setPublic(true);

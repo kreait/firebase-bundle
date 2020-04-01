@@ -2,10 +2,10 @@
 .PHONY: tests coverage view-coverage cs docs view-docs tag
 
 tests: ## Executes the test suite
-	@SYMFONY_PHPUNIT_VERSION="7.4" vendor/bin/simple-phpunit
+	vendor/bin/phpunit
 
 coverage: ## Executes the test suite and generates code coverage reports
-	@SYMFONY_PHPUNIT_VERSION="7.4" vendor/bin/simple-phpunit --coverage-html=build/coverage
+	vendor/bin/phpunit --coverage-html=build/coverage
 
 view-coverage: ## Shows the code coverage report
 	open build/coverage/index.html
