@@ -9,6 +9,9 @@ use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\SimpleCache\CacheInterface;
 
+/**
+ * @internal
+ */
 class ProjectFactoryTest extends TestCase
 {
     /** @var ProjectFactory */
@@ -56,7 +59,7 @@ class ProjectFactoryTest extends TestCase
             ->expects($this->once())
             ->method('withServiceAccount');
 
-        $credentials = file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json');
+        $credentials = \file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json');
 
         $this->factory->createAuth(['credentials' => $credentials]);
     }
@@ -70,7 +73,7 @@ class ProjectFactoryTest extends TestCase
             ->expects($this->once())
             ->method('withServiceAccount');
 
-        $credentials = json_decode(file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json'), true);
+        $credentials = \json_decode(\file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json'), true);
 
         $this->factory->createAuth(['credentials' => $credentials]);
     }

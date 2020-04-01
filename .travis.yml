@@ -24,13 +24,14 @@ matrix:
     - php: 7.3
     - php: 7.4
     - php: 7.4
-      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+      script: vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no
+    - php: 7.4
+      env: PHPUNIT_FLAGS="-v --coverage-text"
 
   allow_failures:
-    - env: COVERAGE=true
+    - env: PHPUNIT_FLAGS="-v --coverage-text"
 
 before_install:
-  - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
   - composer self-update
   - composer global require --no-scripts --no-plugins symfony/flex
 
@@ -38,5 +39,4 @@ install:
   - travis_retry composer update -n --prefer-stable --prefer-dist
 
 script:
-  - composer validate --strict --no-check-lock
   - vendor/bin/phpunit $PHPUNIT_FLAGS

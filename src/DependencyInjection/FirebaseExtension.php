@@ -19,16 +19,16 @@ class FirebaseExtension extends Extension
     /**
      * @throws Throwable
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('firebase.xml');
 
         $projectConfigurations = $config['projects'] ?? [];
-        $projectConfigurationsCount = count($projectConfigurations);
+        $projectConfigurationsCount = \count($projectConfigurations);
 
         $this->assertThatOnlyOneDefaultProjectExists($projectConfigurations);
 
@@ -41,7 +41,7 @@ class FirebaseExtension extends Extension
         }
     }
 
-    private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container)
+    private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container): void
     {
         $this->registerService($name.'.database', $config, Firebase\Database::class, $container, 'createDatabase');
         $this->registerService($name.'.auth', $config, Firebase\Auth::class, $container, 'createAuth');
@@ -64,7 +64,7 @@ class FirebaseExtension extends Extension
 
     private function registerService(string $name, array $config, string $class, ContainerBuilder $container, string $method = 'create'): string
     {
-        $projectServiceId = sprintf('%s.%s', $this->getAlias(), $name);
+        $projectServiceId = \sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
 
         $factory = $container->getDefinition(ProjectFactory::class);
@@ -86,7 +86,7 @@ class FirebaseExtension extends Extension
         return $projectServiceId;
     }
 
-    private function assertThatOnlyOneDefaultProjectExists(array $projectConfigurations)
+    private function assertThatOnlyOneDefaultProjectExists(array $projectConfigurations): void
     {
         $count = 0;
 

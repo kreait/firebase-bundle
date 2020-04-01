@@ -1,7 +1,8 @@
 /build
 /vendor
 
-/.php_cs.cache
+/.php_cs*
+!/.php_cs.dist
 /.phpunit.result.cache
 /composer.lock
 /phpunit.xml

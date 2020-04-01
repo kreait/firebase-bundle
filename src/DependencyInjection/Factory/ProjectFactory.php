@@ -21,7 +21,7 @@ class ProjectFactory
         $this->firebaseFactory = $firebaseFactory;
     }
 
-    public function setVerifierCache(CacheInterface $verifierCache = null)
+    public function setVerifierCache(?CacheInterface $verifierCache = null): void
     {
         $this->verifierCache = $verifierCache;
     }
