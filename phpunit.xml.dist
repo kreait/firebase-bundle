@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.0/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="vendor/autoload.php"
     colors="true"
 >
     <testsuites>
         <testsuite name="Firebase Bundle Test Suite">
-            <directory>./Tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>.</directory>
-            <exclude>
-                <directory>./Tests</directory>
-                <directory>./Resources</directory>
-                <directory>./vendor</directory>
-            </exclude>
+            <directory>src</directory>
         </whitelist>
     </filter>
-
-    <php>
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="max[self]=0" />
-    </php>
 </phpunit>
