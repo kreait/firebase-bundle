@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Unreleased
+
+* The default branch of the GitHub repository has been renamed from `master` to `main` - 
+  if you're using `dev-master` as a version constraint in your `composer.json`, please 
+  update it to `dev-main`.
+
 ## 2.0.0 - 2020-04-01
 
 * Update `kreait/firebase-php` to `^5.0`

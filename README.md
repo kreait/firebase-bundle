@@ -3,8 +3,8 @@
 A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-php).
 
 [![Current version](https://img.shields.io/packagist/v/kreait/firebase-bundle.svg)](https://packagist.org/packages/kreait/firebase-bundle)
-[![Build Status](https://travis-ci.org/kreait/firebase-bundle.svg?branch=master)](https://travis-ci.org/kreait/firebase-bundle)
-[![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/kreait/firebase-bundle.svg)](https://travis-ci.org/kreait/firebase-bundle)
+[![GitHub license](https://img.shields.io/github/license/kreait/firebase-bundle.svg)](https://github.com/kreait/firebase-bundle/blob/main/LICENSE)
 [![Total Downloads](https://img.shields.io/packagist/dt/kreait/firebase-bundle.svg)]()
 [![Discord](https://img.shields.io/discord/523866370778333184.svg?color=7289da&logo=discord)](https://discord.gg/nbgVfty)
 [![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
