@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.1.0] - 2020-06-23
 ### Added
 * Added Support for PSR-6 and PSR-16 caches. This implicitly adds
   out-of-the-box support for Symfony 5.
@@ -17,5 +19,6 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bub/compare/2.0.0...HEAD
-[2.0.0]: https://github.com/kreait/firebase-php/releases/tag/2.0.0
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/kreait/firebase-bundle/compare/2.0.0...2.1.0
+[2.0.0]: https://github.com/kreait/firebase-bundle/releases/tag/2.0.0
