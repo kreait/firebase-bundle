@@ -112,7 +112,7 @@ kreait_firebase:
             default_dynamic_links_domain: 'https://my_project.page.link'
             # Optional: Used to cache Google's public keys. Must implement
             # \Psr\SimpleCache\CacheInterface (PSR-16)
-            verifier_cache: 'cache.app.simple'
+            verifier_cache: 'cache.app'
 ```
 
 ## Documentation

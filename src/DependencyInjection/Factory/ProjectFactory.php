@@ -6,7 +6,10 @@ namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory;
 
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
+use Symfony\Component\Cache\Psr16Cache;
+use Symfony\Component\Cache\Simple\Psr6Cache;
 
 class ProjectFactory
 {
@@ -21,8 +24,19 @@ class ProjectFactory
         $this->firebaseFactory = $firebaseFactory;
     }
 
-    public function setVerifierCache(?CacheInterface $verifierCache = null): void
+    /**
+     * @param CacheInterface|CacheItemPoolInterface $verifierCache
+     */
+    public function setVerifierCache($verifierCache = null): void
     {
+        if ($verifierCache instanceof CacheItemPoolInterface) {
+            if (\class_exists(Psr16Cache::class)) { // Symfony ^4.2|^5.0
+                $verifierCache = new Psr16Cache($verifierCache);
+            } elseif (\class_exists(Psr6Cache::class)) { // Symfony 3.4
+                $verifierCache = new Psr6Cache($verifierCache);
+            }
+        }
+
         $this->verifierCache = $verifierCache;
     }
 

@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Symfony\Bundle\Tests\DependencyInjection\Factory;
 use Kreait\Firebase\Factory as FirebaseFactory;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use PHPUnit\Framework\TestCase;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
@@ -81,7 +82,7 @@ class ProjectFactoryTest extends TestCase
     /**
      * @test
      */
-    public function it_accepts_a_verifier_cache(): void
+    public function it_accepts_a_PSR16_verifier_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);
 
@@ -89,6 +90,22 @@ class ProjectFactoryTest extends TestCase
             ->expects($this->once())
             ->method('withVerifierCache')
             ->with($cache);
+
+        $this->factory->setVerifierCache($cache);
+        $this->factory->createAuth();
+    }
+
+    /**
+     * @test
+     */
+    public function it_accepts_a_PSR6_verifier_cache(): void
+    {
+        $cache = $this->createMock(CacheItemPoolInterface::class);
+
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withVerifierCache')
+            ->with($this->isInstanceOf(CacheInterface::class));
 
         $this->factory->setVerifierCache($cache);
         $this->factory->createAuth();
