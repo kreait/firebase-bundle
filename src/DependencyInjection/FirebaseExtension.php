@@ -73,6 +73,14 @@ class FirebaseExtension extends Extension
             $factory->addMethodCall('setVerifierCache', [new Reference($config['verifier_cache'])]);
         }
 
+        if ($config['http_request_logger'] ?? null) {
+            $factory->addMethodCall('setHttpRequestLogger', [new Reference($config['http_request_logger'])]);
+        }
+
+        if ($config['http_request_debug_logger'] ?? null) {
+            $factory->addMethodCall('setHttpRequestDebugLogger', [new Reference($config['http_request_debug_logger'])]);
+        }
+
         $container->register($projectServiceId, $class)
             ->setFactory([$factory, $method])
             ->addArgument($config)

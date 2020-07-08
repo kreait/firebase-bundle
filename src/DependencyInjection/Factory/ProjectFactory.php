@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory;
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Psr16Cache;
 use Symfony\Component\Cache\Simple\Psr6Cache;
@@ -18,6 +19,12 @@ class ProjectFactory
 
     /** @var CacheInterface|null */
     private $verifierCache;
+
+    /** @var LoggerInterface|null */
+    private $httpRequestLogger;
+
+    /** @var LoggerInterface|null */
+    private $httpRequestDebugLogger;
 
     public function __construct(Factory $firebaseFactory)
     {
@@ -40,6 +47,16 @@ class ProjectFactory
         $this->verifierCache = $verifierCache;
     }
 
+    public function setHttpRequestLogger(?LoggerInterface $logger = null): void
+    {
+        $this->httpRequestLogger = $logger;
+    }
+
+    public function setHttpRequestDebugLogger(?LoggerInterface $logger = null): void
+    {
+        $this->httpRequestDebugLogger = $logger;
+    }
+
     public function createFactory(array $config = []): Factory
     {
         $factory = clone $this->firebaseFactory; // Ensure a new instance
@@ -56,6 +73,14 @@ class ProjectFactory
 
         if ($this->verifierCache) {
             $factory = $factory->withVerifierCache($this->verifierCache);
+        }
+
+        if ($this->httpRequestLogger) {
+            $factory = $factory->withHttpLogger($this->httpRequestLogger);
+        }
+
+        if ($this->httpRequestDebugLogger) {
+            $factory = $factory->withHttpDebugLogger($this->httpRequestDebugLogger);
         }
 
         return $factory;

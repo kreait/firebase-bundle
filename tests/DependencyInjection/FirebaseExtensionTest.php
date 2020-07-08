@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Symfony\Bundle\Tests\DependencyInjection;
 use Kreait\Firebase;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\FirebaseExtension;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use stdClass;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -79,6 +80,50 @@ class FirebaseExtensionTest extends TestCase
         ]);
         $cache = $this->createMock(CacheInterface::class);
         $container->set($cacheServiceId, $cache);
+
+        $container->get(Firebase\Auth::class);
+        $this->addToAssertionCount(1);
+    }
+
+    /**
+     * @test
+     */
+    public function a_request_logger_can_be_used(): void
+    {
+        $loggerServiceId = 'firebase_logger';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'http_request_logger' => $loggerServiceId,
+                ],
+            ],
+        ]);
+        $logger = $this->createMock(LoggerInterface::class);
+        $container->set($loggerServiceId, $logger);
+
+        $container->get(Firebase\Auth::class);
+        $this->addToAssertionCount(1);
+    }
+
+    /**
+     * @test
+     */
+    public function a_request_debug_logger_can_be_used(): void
+    {
+        $loggerServiceId = 'firebase_debug_logger';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'http_request_debug_logger' => $loggerServiceId,
+                ],
+            ],
+        ]);
+        $logger = $this->createMock(LoggerInterface::class);
+        $container->set($loggerServiceId, $logger);
 
         $container->get(Firebase\Auth::class);
         $this->addToAssertionCount(1);

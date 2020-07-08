@@ -112,7 +112,11 @@ kreait_firebase:
             default_dynamic_links_domain: 'https://my_project.page.link'
             # Optional: Used to cache Google's public keys. Must implement
             # \Psr\SimpleCache\CacheInterface (PSR-16)
-            verifier_cache: 'cache.app'
+            verifier_cache: null # Example: cache.app
+            # If set, logs simple HTTP request and response statuses
+            http_request_logger:  null # Example: monolog.logger.firebase
+            # If set, logs detailed HTTP request and response statuses
+            http_request_debug_logger: null # Example: monolog.logger.firebase_debug
 ```
 
 ## Documentation

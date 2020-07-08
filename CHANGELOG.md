@@ -1,6 +1,11 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Added
+* It is now possible to log HTTP requests and responses to the Firebase APIs 
+  by specifying a logger's service ID. You can do so by setting 
+  `http_request_logger` and `http_request_debug_logger` with the service ID 
+  of an already configured logger, e.g. `monolog.logger`.
 
 ## [2.1.0] - 2020-06-23
 ### Added
