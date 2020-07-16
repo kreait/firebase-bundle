@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 1.2.1 - 2020-07-16
 
 * Fix compatibility with Symfony 2.x ([#26](https://github.com/kreait/firebase-bundle/pull/26))
 
