@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.3.0] - 2020-10-04
 ### Added
 * PHP `^8.0` is now an allowed (but untested) PHP version
 
@@ -28,7 +30,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/kreait/firebase-bundle/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/kreait/firebase-bundle/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/kreait/firebase-bundle/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/kreait/firebase-bundle/releases/tag/2.0.0
