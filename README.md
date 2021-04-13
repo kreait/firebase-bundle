@@ -108,6 +108,8 @@ kreait_firebase:
             # Database can not be generated with the project id of the 
             # given Service Account
             database_uri: 'https://my_project.firebaseio.com'
+            # Optional: Make the client tenant aware
+            tenant_id: 'tenant-id'
             # Optional: Default domain for Dynamic Links
             default_dynamic_links_domain: 'https://my_project.page.link'
             # Optional: Used to cache Google's public keys. Must implement
