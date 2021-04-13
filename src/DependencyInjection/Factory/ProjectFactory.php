@@ -86,37 +86,37 @@ class ProjectFactory
         return $factory;
     }
 
-    public function createAuth(array $config = []): Firebase\Auth
+    public function createAuth(array $config = []): Firebase\Contract\Auth
     {
         return $this->createFactory($config)->createAuth();
     }
 
-    public function createDatabase(array $config = []): Firebase\Database
+    public function createDatabase(array $config = []): Firebase\Contract\Database
     {
         return $this->createFactory($config)->createDatabase();
     }
 
-    public function createFirestore(array $config = []): Firebase\Firestore
+    public function createFirestore(array $config = []): Firebase\Contract\Firestore
     {
         return $this->createFactory($config)->createFirestore();
     }
 
-    public function createMessaging(array $config = []): Firebase\Messaging
+    public function createMessaging(array $config = []): Firebase\Contract\Messaging
     {
         return $this->createFactory($config)->createMessaging();
     }
 
-    public function createRemoteConfig(array $config = []): Firebase\RemoteConfig
+    public function createRemoteConfig(array $config = []): Firebase\Contract\RemoteConfig
     {
         return $this->createFactory($config)->createRemoteConfig();
     }
 
-    public function createStorage(array $config = []): Firebase\Storage
+    public function createStorage(array $config = []): Firebase\Contract\Storage
     {
         return $this->createFactory($config)->createStorage();
     }
 
-    public function createDynamicLinksService(array $config = []): Firebase\DynamicLinks
+    public function createDynamicLinksService(array $config = []): Firebase\Contract\DynamicLinks
     {
         $defaultDynamicLinksDomain = $config['default_dynamic_links_domain'] ?? null;
 
