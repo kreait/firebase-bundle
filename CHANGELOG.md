@@ -1,6 +1,12 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.4.0] - 2021-04-14
+### Added
+* Added configuration option `tenant_id` to make a project tenant aware.
+  ([#31](https://github.com/kreait/firebase-bundle/pull/31))
+
 ### Changed
 * The bundle now requires at least version 5.17.1 of the Firebase PHP SDK
 
@@ -32,7 +38,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.3.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/kreait/firebase-bundle/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/kreait/firebase-bundle/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/kreait/firebase-bundle/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/kreait/firebase-bundle/compare/2.0.0...2.1.0
