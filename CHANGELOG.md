@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Changed
+* The bundle now requires at least version 5.17.1 of the Firebase PHP SDK
 
 ## [2.3.0] - 2020-10-04
 ### Added
