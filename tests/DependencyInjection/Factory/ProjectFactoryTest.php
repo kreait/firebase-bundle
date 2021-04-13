@@ -82,6 +82,19 @@ class ProjectFactoryTest extends TestCase
     /**
      * @test
      */
+    public function it_can_handle_a_tenant_id(): void
+    {
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withTenantId')
+            ->with('tenant-id');
+
+        $this->factory->createAuth(['tenant_id' => 'tenant-id']);
+    }
+
+    /**
+     * @test
+     */
     public function it_accepts_a_PSR16_verifier_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);

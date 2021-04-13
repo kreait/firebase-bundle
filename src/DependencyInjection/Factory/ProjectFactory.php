@@ -71,6 +71,10 @@ class ProjectFactory
             $factory = $factory->withDatabaseUri($config['database_uri']);
         }
 
+        if ($config['tenant_id'] ?? null) {
+            $factory = $factory->withTenantId($config['tenant_id']);
+        }
+
         if ($this->verifierCache) {
             $factory = $factory->withVerifierCache($this->verifierCache);
         }
