@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Changed
+* Removed `psr/cache` and `psr/simple-cache` as direct dependencies.
 
 ## [2.4.0] - 2021-04-14
 ### Added
