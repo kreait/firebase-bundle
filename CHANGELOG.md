@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.5.0] - 2021-10-08
 ### Changed
 * Removed `psr/cache` and `psr/simple-cache` as direct dependencies.
 * Updated `symfony/cache` dependency to address CVE.
@@ -41,7 +43,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.4.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/kreait/firebase-bundle/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/kreait/firebase-bundle/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/kreait/firebase-bundle/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/kreait/firebase-bundle/compare/2.1.0...2.2.0
