@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Changed
 * Removed `psr/cache` and `psr/simple-cache` as direct dependencies.
+* Updated `symfony/cache` dependency to address CVE.
 
 ## [2.4.0] - 2021-04-14
 ### Added
