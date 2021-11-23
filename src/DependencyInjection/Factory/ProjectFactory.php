@@ -10,21 +10,13 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Psr16Cache;
-use Symfony\Component\Cache\Simple\Psr6Cache;
 
 class ProjectFactory
 {
-    /** @var Factory */
-    private $firebaseFactory;
-
-    /** @var CacheInterface|null */
-    private $verifierCache;
-
-    /** @var LoggerInterface|null */
-    private $httpRequestLogger;
-
-    /** @var LoggerInterface|null */
-    private $httpRequestDebugLogger;
+    private Factory $firebaseFactory;
+    private ?CacheInterface $verifierCache = null;
+    private ?LoggerInterface $httpRequestLogger = null;
+    private ?LoggerInterface $httpRequestDebugLogger = null;
 
     public function __construct(Factory $firebaseFactory)
     {
@@ -37,11 +29,7 @@ class ProjectFactory
     public function setVerifierCache($verifierCache = null): void
     {
         if ($verifierCache instanceof CacheItemPoolInterface) {
-            if (\class_exists(Psr16Cache::class)) { // Symfony ^4.2|^5.0
-                $verifierCache = new Psr16Cache($verifierCache);
-            } elseif (\class_exists(Psr6Cache::class)) { // Symfony 3.4
-                $verifierCache = new Psr6Cache($verifierCache);
-            }
+            $verifierCache = new Psr16Cache($verifierCache);
         }
 
         $this->verifierCache = $verifierCache;
@@ -55,6 +43,11 @@ class ProjectFactory
     public function setHttpRequestDebugLogger(?LoggerInterface $logger = null): void
     {
         $this->httpRequestDebugLogger = $logger;
+    }
+
+    public function createAuth(array $config = []): Firebase\Contract\Auth
+    {
+        return $this->createFactory($config)->createAuth();
     }
 
     public function createFactory(array $config = []): Factory
@@ -88,11 +81,6 @@ class ProjectFactory
         }
 
         return $factory;
-    }
-
-    public function createAuth(array $config = []): Firebase\Contract\Auth
-    {
-        return $this->createFactory($config)->createAuth();
     }
 
     public function createDatabase(array $config = []): Firebase\Contract\Database

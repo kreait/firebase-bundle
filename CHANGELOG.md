@@ -4,6 +4,12 @@
 ### Added
 * Made component contracts (`Kreait\Firebase\Contract\*`) available via dependency injection.
 
+### Changed
+* Dropped support for unsupported Symfony versions (see [Symfony Releases](https://symfony.com/releases)). Starting with
+  this release, supported Symfony versions are ^4.4 and ^5.3.
+* Dropped support for unsupported PHP versions. Starting with this release, supported are PHP versions ^7.4 and ^8.0.
+* Require `"kreait/firebase-php": "^5.25.0"`
+
 ### Deprecated
 * Deprecated usage of contract implementations via dependency injection.
 

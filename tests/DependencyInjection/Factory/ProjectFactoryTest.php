@@ -13,10 +13,9 @@ use Psr\SimpleCache\CacheInterface;
 /**
  * @internal
  */
-class ProjectFactoryTest extends TestCase
+final class ProjectFactoryTest extends TestCase
 {
-    /** @var ProjectFactory */
-    private $factory;
+    private ProjectFactory $factory;
 
     private $firebaseFactory;
 

@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
-class FirebaseBundleTest extends TestCase
+final class FirebaseBundleTest extends TestCase
 {
     /**
      * @test

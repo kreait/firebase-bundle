@@ -2,7 +2,7 @@ Please avoid using the issue tracker for questions or help. Submitting issues to
 
 Also see past issues and https://firebase-php.readthedocs.io/en/latest/troubleshooting.html to check if your problem has already been covered.
 
-Please chose a descriptive title for your issue and delete everything before and including this line before submitting the issue.
+Please choose a descriptive title for your issue and delete everything before and including this line before submitting the issue.
 
 ## The problem
 

@@ -21,10 +21,9 @@ use TypeError;
 /**
  * @internal
  */
-class FirebaseExtensionTest extends TestCase
+final class FirebaseExtensionTest extends TestCase
 {
-    /** @var FirebaseExtension */
-    private $extension;
+    private FirebaseExtension $extension;
 
     protected function setUp(): void
     {

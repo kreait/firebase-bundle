@@ -9,8 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $name)
     {
@@ -21,13 +20,7 @@ class Configuration implements ConfigurationInterface
     {
         $builder = new TreeBuilder($this->name);
 
-        if (\method_exists($builder, 'getRootNode')) {
-            $root = $builder->getRootNode();
-        } else {
-            $root = $builder->root($this->name);
-        }
-
-        $root
+        $builder->getRootNode()
             ->fixXmlConfig('project')
             ->children()
                 ->arrayNode('projects')

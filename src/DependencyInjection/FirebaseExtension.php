@@ -12,13 +12,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Throwable;
 
 class FirebaseExtension extends Extension
 {
-    /**
-     * @throws Throwable
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration($configs, $container);
@@ -62,7 +58,7 @@ class FirebaseExtension extends Extension
         return new Configuration($this->getAlias());
     }
 
-    private function registerService(string $name, array $config, string $class, string $contract, ContainerBuilder $container, string $method = 'create'): string
+    private function registerService(string $name, array $config, string $class, string $contract, ContainerBuilder $container, string $method = 'create'): void
     {
         $projectServiceId = \sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
@@ -90,8 +86,6 @@ class FirebaseExtension extends Extension
             $container->setAlias($contract, $projectServiceId)->setPublic($isPublic);
             $container->setAlias($class, $projectServiceId)->setPublic($isPublic)->setDeprecated('kreait/firebase-bundle', '2.6.0', 'The "%alias_id%" service alias is deprecated. You should stop using it, as it will be removed in the future.');
         }
-
-        return $projectServiceId;
     }
 
     private function assertThatOnlyOneDefaultProjectExists(array $projectConfigurations): void
