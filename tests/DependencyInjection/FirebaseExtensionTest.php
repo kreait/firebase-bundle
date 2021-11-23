@@ -44,23 +44,29 @@ class FirebaseExtensionTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(Firebase\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
-        $this->assertInstanceOf(Firebase\Database::class, $container->get(Firebase\Database::class));
+        $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
+        $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get(Firebase\Database::class));
+        $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get(Firebase\Contract\Database::class));
 
-        $this->assertInstanceOf(Firebase\Auth::class, $container->get($this->extension->getAlias().'.foo.auth'));
-        $this->assertInstanceOf(Firebase\Auth::class, $container->get(Firebase\Auth::class));
+        $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get($this->extension->getAlias().'.foo.auth'));
+        $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get(Firebase\Auth::class));
+        $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get(Firebase\Contract\Auth::class));
 
-        $this->assertInstanceOf(Firebase\Storage::class, $container->get($this->extension->getAlias().'.foo.storage'));
-        $this->assertInstanceOf(Firebase\Storage::class, $container->get(Firebase\Storage::class));
+        $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get($this->extension->getAlias().'.foo.storage'));
+        $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get(Firebase\Storage::class));
+        $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get(Firebase\Contract\Storage::class));
 
-        $this->assertInstanceOf(Firebase\RemoteConfig::class, $container->get($this->extension->getAlias().'.foo.remote_config'));
-        $this->assertInstanceOf(Firebase\RemoteConfig::class, $container->get(Firebase\RemoteConfig::class));
+        $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get($this->extension->getAlias().'.foo.remote_config'));
+        $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get(Firebase\RemoteConfig::class));
+        $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get(Firebase\Contract\RemoteConfig::class));
 
-        $this->assertInstanceOf(Firebase\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
-        $this->assertInstanceOf(Firebase\Messaging::class, $container->get(Firebase\Messaging::class));
+        $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
+        $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get(Firebase\Messaging::class));
+        $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get(Firebase\Contract\Messaging::class));
 
-        $this->assertInstanceOf(Firebase\DynamicLinks::class, $container->get($this->extension->getAlias().'.foo.dynamic_links'));
-        $this->assertInstanceOf(Firebase\DynamicLinks::class, $container->get(Firebase\DynamicLinks::class));
+        $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get($this->extension->getAlias().'.foo.dynamic_links'));
+        $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get(Firebase\DynamicLinks::class));
+        $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get(Firebase\Contract\DynamicLinks::class));
     }
 
     /**

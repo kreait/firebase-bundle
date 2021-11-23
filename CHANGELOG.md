@@ -1,6 +1,11 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Added
+* Made component contracts (`Kreait\Firebase\Contract\*`) available via dependency injection.
+
+### Deprecated
+* Deprecated usage of contract implementations via dependency injection.
 
 ## [2.5.0] - 2021-10-08
 ### Changed

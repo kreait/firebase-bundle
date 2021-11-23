@@ -75,13 +75,13 @@ The following services will be available for your project:
 
 The following classes will be available for dependency injection if you have configured only one project:
 
-* `Kreait\Firebase\Auth`
-* `Kreait\Firebase\Database`
-* `Kreait\Firebase\Firestore`
-* `Kreait\Firebase\Messaging`
-* `Kreait\Firebase\RemoteConfig`
-* `Kreait\Firebase\Storage`
-* `Kreait\Firebase\DynamicLinks`
+* `Kreait\Firebase\Contract\Auth`
+* `Kreait\Firebase\Contract\Database`
+* `Kreait\Firebase\Contract\Firestore`
+* `Kreait\Firebase\Contract\Messaging`
+* `Kreait\Firebase\Contract\RemoteConfig`
+* `Kreait\Firebase\Contract\Storage`
+* `Kreait\Firebase\Contract\DynamicLinks`
 
 ### Full
 
