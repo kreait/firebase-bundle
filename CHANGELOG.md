@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Changed
+* Dropped support for Symfony <5.4
+* Added support for Symfony ^6.0
 
 ## [2.6.0] - 2021-11-23
 ### Added
