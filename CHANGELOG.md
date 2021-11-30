@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [3.0.0] - 2021-11-30
 ### Changed
 * Dropped support for Symfony <5.4
 * Added support for Symfony ^6.0
@@ -59,7 +61,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.6.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/kreait/firebase-bundle/compare/2.6.0...3.0.0
 [2.6.0]: https://github.com/kreait/firebase-bundle/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/kreait/firebase-bundle/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/kreait/firebase-bundle/compare/2.3.0...2.4.0
