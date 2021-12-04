@@ -9,12 +9,14 @@ use Kreait\Firebase\Factory;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
+use Symfony\Component\Cache\Adapter\Psr16Adapter;
 use Symfony\Component\Cache\Psr16Cache;
 
 class ProjectFactory
 {
     private Factory $firebaseFactory;
     private ?CacheInterface $verifierCache = null;
+    private ?CacheItemPoolInterface $authTokenCache = null;
     private ?LoggerInterface $httpRequestLogger = null;
     private ?LoggerInterface $httpRequestDebugLogger = null;
 
@@ -33,6 +35,18 @@ class ProjectFactory
         }
 
         $this->verifierCache = $verifierCache;
+    }
+
+    /**
+     * @param CacheInterface|CacheItemPoolInterface|null $authTokenCache
+     */
+    public function setAuthTokenCache($authTokenCache = null): void
+    {
+        if ($authTokenCache instanceof CacheInterface) {
+            $authTokenCache = new Psr16Adapter($authTokenCache);
+        }
+
+        $this->authTokenCache = $authTokenCache;
     }
 
     public function setHttpRequestLogger(?LoggerInterface $logger = null): void
@@ -70,6 +84,10 @@ class ProjectFactory
 
         if ($this->verifierCache) {
             $factory = $factory->withVerifierCache($this->verifierCache);
+        }
+
+        if ($this->authTokenCache) {
+            $factory = $factory->withAuthTokenCache($this->authTokenCache);
         }
 
         if ($this->httpRequestLogger) {

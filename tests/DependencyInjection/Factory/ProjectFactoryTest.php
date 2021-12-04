@@ -122,4 +122,36 @@ final class ProjectFactoryTest extends TestCase
         $this->factory->setVerifierCache($cache);
         $this->factory->createAuth();
     }
+
+    /**
+     * @test
+     */
+    public function it_accepts_a_PSR16_auth_token_cache(): void
+    {
+        $cache = $this->createMock(CacheInterface::class);
+
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withAuthTokenCache')
+            ->with($this->isInstanceOf(CacheItemPoolInterface::class));
+
+        $this->factory->setAuthTokenCache($cache);
+        $this->factory->createAuth();
+    }
+
+    /**
+     * @test
+     */
+    public function it_accepts_a_PSR6_auth_token_cache(): void
+    {
+        $cache = $this->createMock(CacheItemPoolInterface::class);
+
+        $this->firebaseFactory
+            ->expects($this->once())
+            ->method('withAuthTokenCache')
+            ->with($cache);
+
+        $this->factory->setAuthTokenCache($cache);
+        $this->factory->createAuth();
+    }
 }
