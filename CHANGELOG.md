@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.6.1] - 2021-12-04
 ### Fixed
 * Fixed service alias deprecation when used with Symfony 4.4
   ([#38](https://github.com/kreait/firebase-bundle/issues/38))
@@ -59,7 +61,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.6.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.6.1...2.x
+[2.6.1]: https://github.com/kreait/firebase-bundle/compare/2.6.0...2.6.1
 [2.6.0]: https://github.com/kreait/firebase-bundle/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/kreait/firebase-bundle/compare/2.4.0...2.5.0
 [2.4.0]: https://github.com/kreait/firebase-bundle/compare/2.3.0...2.4.0
