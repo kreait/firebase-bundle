@@ -84,7 +84,7 @@ class FirebaseExtension extends Extension
 
         if ($config['default'] ?? false) {
             $container->setAlias($contract, $projectServiceId)->setPublic($isPublic);
-            $container->setAlias($class, $projectServiceId)->setPublic($isPublic)->setDeprecated('kreait/firebase-bundle', '2.6.0', 'The "%alias_id%" service alias is deprecated. You should stop using it, as it will be removed in the future.');
+            $container->setAlias($class, $projectServiceId)->setPublic($isPublic)->setDeprecated();
         }
     }
 

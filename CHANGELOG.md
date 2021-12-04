@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## [Unreleased]
+### Fixed
+* Fixed service alias deprecation when used with Symfony 4.4
+  ([#38](https://github.com/kreait/firebase-bundle/issues/38))
 
 ## [2.6.0] - 2021-11-23
 ### Added
