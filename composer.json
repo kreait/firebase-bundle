@@ -20,7 +20,6 @@
         "symfony/http-kernel": "^4.4|^5.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {

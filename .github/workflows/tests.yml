@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+    push: ~
+    pull_request: ~
+
+jobs:
+    build:
+        runs-on: 'ubuntu-latest'
+        name: PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }} with ${{ matrix.dependencies }} dependencies
+        strategy:
+            matrix:
+                php: ['7.4', '8.0', '8.1']
+                symfony: ['^5.3']
+                dependencies: ['highest']
+                include:
+                    - php: '7.4'
+                      symfony: '4.4'
+                      dependencies: 'lowest'
+                    - php: '7.4'
+                      symfony: '4.4'
+                      dependencies: 'highest'
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup PHP ${{ matrix.php }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  tools: flex
+
+            - name: Download dependencies
+              env:
+                  SYMFONY_REQUIRE: ${{ matrix.symfony }}
+              uses: ramsey/composer-install@v1
+              with:
+                  dependency-versions: "${{ matrix.dependencies }}"
+
+            - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
+              run: ./vendor/bin/phpunit
