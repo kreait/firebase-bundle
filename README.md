@@ -112,9 +112,10 @@ kreait_firebase:
             tenant_id: 'tenant-id'
             # Optional: Default domain for Dynamic Links
             default_dynamic_links_domain: 'https://my_project.page.link'
-            # Optional: Used to cache Google's public keys. Must implement
-            # \Psr\SimpleCache\CacheInterface (PSR-16)
+            # Optional: Used to cache Google's public keys.
             verifier_cache: null # Example: cache.app
+            # Optional: Used to cache the authentication tokens for connecting to the Firebase servers.
+            auth_token_cache: null # Example: cache.app
             # If set, logs simple HTTP request and response statuses
             http_request_logger:  null # Example: monolog.logger.firebase
             # If set, logs detailed HTTP request and response statuses
