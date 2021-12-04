@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
+
+## [2.7.0] - 2021-12-04
 ### Added
 * Added support for caching the authentication tokens used for connecting to the Firebase servers.
 
@@ -63,7 +65,8 @@
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.6.1...2.x
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/2.7.0...2.x
+[2.7.0]: https://github.com/kreait/firebase-bundle/compare/2.6.1...2.7.0
 [2.6.1]: https://github.com/kreait/firebase-bundle/compare/2.6.0...2.6.1
 [2.6.0]: https://github.com/kreait/firebase-bundle/compare/2.5.0...2.6.0
 [2.5.0]: https://github.com/kreait/firebase-bundle/compare/2.4.0...2.5.0
