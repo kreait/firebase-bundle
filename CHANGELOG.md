@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [4.0.0] - 2022-01-09
+
 This is a release with breaking changes. Please review the following changes and adapt your application where needed.
 
 ### Changes
@@ -73,7 +75,8 @@ This is a release with breaking changes. Please review the following changes and
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/kreait/firebase-bundle/compare/3.1.0...4.0.0
 [3.1.0]: https://github.com/kreait/firebase-bundle/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/kreait/firebase-bundle/compare/2.6.0...3.0.0
 [2.6.0]: https://github.com/kreait/firebase-bundle/compare/2.5.0...2.6.0
