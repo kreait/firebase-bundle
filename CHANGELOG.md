@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+This is a release with breaking changes. Please review the following changes and adapt your application where needed.
+
+### Changes
+* Added support for `kreait/firebase-php` ^6.0
+* Dropped support for `kreait/firebase-php` <6.0
+* If you're type-hinting dependencies in your application code, make sure you type-hint the
+  `Kreait\Firebase\Contract\*` **interfaces**, not the `Kreait\Firebase\*` **implementations**
+
 ## [3.1.0] - 2021-12-04
 ### Added
 * Added support for caching the authentication tokens used for connecting to the Firebase servers.

@@ -9,6 +9,7 @@ use Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
@@ -39,13 +40,13 @@ class FirebaseExtension extends Extension
 
     private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container): void
     {
-        $this->registerService($name.'.database', $config, Firebase\Database::class, Firebase\Contract\Database::class, $container, 'createDatabase');
-        $this->registerService($name.'.auth', $config, Firebase\Auth::class, Firebase\Contract\Auth::class, $container, 'createAuth');
-        $this->registerService($name.'.storage', $config, Firebase\Storage::class, Firebase\Contract\Storage::class, $container, 'createStorage');
-        $this->registerService($name.'.remote_config', $config, Firebase\RemoteConfig::class, Firebase\Contract\RemoteConfig::class, $container, 'createRemoteConfig');
-        $this->registerService($name.'.messaging', $config, Firebase\Messaging::class, Firebase\Contract\Messaging::class, $container, 'createMessaging');
-        $this->registerService($name.'.firestore', $config, Firebase\Firestore::class, Firebase\Contract\Firestore::class, $container, 'createFirestore');
-        $this->registerService($name.'.dynamic_links', $config, Firebase\DynamicLinks::class, Firebase\Contract\DynamicLinks::class, $container, 'createDynamicLinksService');
+        $this->registerService($name.'.database', $config, Firebase\Contract\Database::class, $container, 'createDatabase');
+        $this->registerService($name.'.auth', $config, Firebase\Contract\Auth::class, $container, 'createAuth');
+        $this->registerService($name.'.storage', $config, Firebase\Contract\Storage::class, $container, 'createStorage');
+        $this->registerService($name.'.remote_config', $config, Firebase\Contract\RemoteConfig::class, $container, 'createRemoteConfig');
+        $this->registerService($name.'.messaging', $config, Firebase\Contract\Messaging::class, $container, 'createMessaging');
+        $this->registerService($name.'.firestore', $config, Firebase\Contract\Firestore::class, $container, 'createFirestore');
+        $this->registerService($name.'.dynamic_links', $config, Firebase\Contract\DynamicLinks::class, $container, 'createDynamicLinksService');
     }
 
     public function getAlias(): string
@@ -58,12 +59,13 @@ class FirebaseExtension extends Extension
         return new Configuration($this->getAlias());
     }
 
-    private function registerService(string $name, array $config, string $class, string $contract, ContainerBuilder $container, string $method = 'create'): void
+    private function registerService(string $name, array $config, string $contract, ContainerBuilder $container, string $method = 'create'): void
     {
         $projectServiceId = \sprintf('%s.%s', $this->getAlias(), $name);
         $isPublic = $config['public'];
 
-        $factory = $container->getDefinition(ProjectFactory::class);
+        $factory = new Definition(ProjectFactory::class);
+        $factory->setPublic(false);
 
         if ($config['verifier_cache'] ?? null) {
             $factory->addMethodCall('setVerifierCache', [new Reference($config['verifier_cache'])]);
@@ -88,7 +90,6 @@ class FirebaseExtension extends Extension
 
         if ($config['default'] ?? false) {
             $container->setAlias($contract, $projectServiceId)->setPublic($isPublic);
-            $container->setAlias($class, $projectServiceId)->setPublic($isPublic)->setDeprecated('kreait/firebase-bundle', '2.6.0', 'The "%alias_id%" service alias is deprecated. You should stop using it, as it will be removed in the future.');
         }
     }
 

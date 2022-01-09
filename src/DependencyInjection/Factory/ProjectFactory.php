@@ -10,19 +10,18 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Adapter\Psr16Adapter;
-use Symfony\Component\Cache\Psr16Cache;
 
 class ProjectFactory
 {
     private Factory $firebaseFactory;
-    private ?CacheInterface $verifierCache = null;
+    private ?CacheItemPoolInterface $verifierCache = null;
     private ?CacheItemPoolInterface $authTokenCache = null;
     private ?LoggerInterface $httpRequestLogger = null;
     private ?LoggerInterface $httpRequestDebugLogger = null;
 
-    public function __construct(Factory $firebaseFactory)
+    public function __construct()
     {
-        $this->firebaseFactory = $firebaseFactory;
+        $this->firebaseFactory = new Factory();
     }
 
     /**
@@ -30,8 +29,8 @@ class ProjectFactory
      */
     public function setVerifierCache($verifierCache = null): void
     {
-        if ($verifierCache instanceof CacheItemPoolInterface) {
-            $verifierCache = new Psr16Cache($verifierCache);
+        if ($verifierCache instanceof CacheInterface) {
+            $verifierCache = new Psr16Adapter($verifierCache);
         }
 
         $this->verifierCache = $verifierCache;

@@ -7,8 +7,8 @@ namespace Kreait\Firebase\Symfony\Bundle\Tests\DependencyInjection;
 use Kreait\Firebase;
 use Kreait\Firebase\Symfony\Bundle\DependencyInjection\FirebaseExtension;
 use PHPUnit\Framework\TestCase;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
-use Psr\SimpleCache\CacheInterface;
 use stdClass;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Alias;
@@ -44,27 +44,21 @@ final class FirebaseExtensionTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get($this->extension->getAlias().'.foo.database'));
-        $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get(Firebase\Database::class));
         $this->assertInstanceOf(Firebase\Contract\Database::class, $container->get(Firebase\Contract\Database::class));
 
         $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get($this->extension->getAlias().'.foo.auth'));
-        $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get(Firebase\Auth::class));
         $this->assertInstanceOf(Firebase\Contract\Auth::class, $container->get(Firebase\Contract\Auth::class));
 
         $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get($this->extension->getAlias().'.foo.storage'));
-        $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get(Firebase\Storage::class));
         $this->assertInstanceOf(Firebase\Contract\Storage::class, $container->get(Firebase\Contract\Storage::class));
 
         $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get($this->extension->getAlias().'.foo.remote_config'));
-        $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get(Firebase\RemoteConfig::class));
         $this->assertInstanceOf(Firebase\Contract\RemoteConfig::class, $container->get(Firebase\Contract\RemoteConfig::class));
 
         $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get($this->extension->getAlias().'.foo.messaging'));
-        $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get(Firebase\Messaging::class));
         $this->assertInstanceOf(Firebase\Contract\Messaging::class, $container->get(Firebase\Contract\Messaging::class));
 
         $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get($this->extension->getAlias().'.foo.dynamic_links'));
-        $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get(Firebase\DynamicLinks::class));
         $this->assertInstanceOf(Firebase\Contract\DynamicLinks::class, $container->get(Firebase\Contract\DynamicLinks::class));
     }
 
@@ -83,10 +77,32 @@ final class FirebaseExtensionTest extends TestCase
                 ],
             ],
         ]);
-        $cache = $this->createMock(CacheInterface::class);
+        $cache = $this->createMock(CacheItemPoolInterface::class);
         $container->set($cacheServiceId, $cache);
 
-        $container->get(Firebase\Auth::class);
+        $container->get(Firebase\Contract\Auth::class);
+        $this->addToAssertionCount(1);
+    }
+
+    /**
+     * @test
+     */
+    public function an_auth_token_cache_can_be_used(): void
+    {
+        $cacheServiceId = 'cache.app.simple.mock';
+
+        $container = $this->createContainer([
+            'projects' => [
+                'foo' => [
+                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
+                    'auth_token_cache' => $cacheServiceId,
+                ],
+            ],
+        ]);
+        $cache = $this->createMock(CacheItemPoolInterface::class);
+        $container->set($cacheServiceId, $cache);
+
+        $container->get(Firebase\Contract\Auth::class);
         $this->addToAssertionCount(1);
     }
 
@@ -108,7 +124,7 @@ final class FirebaseExtensionTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
         $container->set($loggerServiceId, $logger);
 
-        $container->get(Firebase\Auth::class);
+        $container->get(Firebase\Contract\Auth::class);
         $this->addToAssertionCount(1);
     }
 
@@ -130,7 +146,7 @@ final class FirebaseExtensionTest extends TestCase
         $logger = $this->createMock(LoggerInterface::class);
         $container->set($loggerServiceId, $logger);
 
-        $container->get(Firebase\Auth::class);
+        $container->get(Firebase\Contract\Auth::class);
         $this->addToAssertionCount(1);
     }
 
@@ -153,7 +169,7 @@ final class FirebaseExtensionTest extends TestCase
         $container->set($cacheServiceId, $invalidCache);
 
         $this->expectException(TypeError::class);
-        $container->get(Firebase\Auth::class);
+        $container->get(Firebase\Contract\Auth::class);
     }
 
     /**
@@ -173,7 +189,7 @@ final class FirebaseExtensionTest extends TestCase
         ]);
 
         $this->expectException(ServiceNotFoundException::class);
-        $container->get(Firebase\Auth::class);
+        $container->get(Firebase\Contract\Auth::class);
     }
 
     /**
@@ -254,26 +270,6 @@ final class FirebaseExtensionTest extends TestCase
     /**
      * @test
      */
-    public function it_aliases_the_firebase_class_to_the_default_project(): void
-    {
-        $container = $this->createContainer([
-            'projects' => [
-                'foo' => [
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                ],
-                'bar' => [
-                    'default' => true,
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                ],
-            ],
-        ], $makeServicesPublic = true);
-
-        $this->assertTrue($container->hasAlias(Firebase\Auth::class));
-    }
-
-    /**
-     * @test
-     */
     public function it_has_no_default_project_if_none_could_be_determined(): void
     {
         $container = $this->createContainer([
@@ -287,7 +283,7 @@ final class FirebaseExtensionTest extends TestCase
             ],
         ], $makeServicesPublic = true);
 
-        $this->assertFalse($container->hasAlias(Firebase\Auth::class));
+        $this->assertFalse($container->hasAlias(Firebase\Contract\Auth::class));
     }
 
     private function createContainer(array $config = [], $makeServicesPublic = false): ContainerBuilder
