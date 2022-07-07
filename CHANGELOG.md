@@ -6,7 +6,7 @@
 
 ### Added
 
-* Extra aliases are added to make it easier to work with multiple values.
+* Extra aliases have been added to make it easier to work with multiple projects.
   ([#41](https://github.com/kreait/firebase-bundle/pull/41))
 
 ## [4.0.0] - 2022-01-09
