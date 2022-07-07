@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [4.1.0] - 2022-07-07
+
+### Added
+
+* Extra aliases are added to make it easier to work with multiple values.
+  ([#41](https://github.com/kreait/firebase-bundle/pull/41))
+
 ## [4.0.0] - 2022-01-09
 
 This is a release with breaking changes. Please review the following changes and adapt your application where needed.
@@ -75,7 +82,8 @@ This is a release with breaking changes. Please review the following changes and
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/kreait/firebase-bundle/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/kreait/firebase-bundle/compare/3.1.0...4.0.0
 [3.1.0]: https://github.com/kreait/firebase-bundle/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/kreait/firebase-bundle/compare/2.6.0...3.0.0
