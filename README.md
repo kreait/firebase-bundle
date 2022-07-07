@@ -83,6 +83,16 @@ The following classes will be available for dependency injection if you have con
 * `Kreait\Firebase\Contract\Storage`
 * `Kreait\Firebase\Contract\DynamicLinks`
 
+To make it easier to use classes via dependency injection in the constructor of a class when multiple projects exist, you can do this in the constructor:
+
+* `Kreait\Firebase\Contract\Auth $my_projectAuth`
+* `Kreait\Firebase\Contract\Database $my_projectDatabase`
+* `Kreait\Firebase\Contract\Firestore $my_projectFirestore`
+* `Kreait\Firebase\Contract\Messaging $my_projectMessaging`
+* `Kreait\Firebase\Contract\RemoteConfig $my_projectRemoteConfig`
+* `Kreait\Firebase\Contract\Storage $my_projectStorage`
+* `Kreait\Firebase\Contract\DynamicLinks $my_projectDynamicLinks`
+
 ### Full
 
 ```yaml
