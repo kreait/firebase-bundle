@@ -40,13 +40,13 @@ class FirebaseExtension extends Extension
 
     private function processProjectConfiguration(string $name, array $config, ContainerBuilder $container): void
     {
-        $this->registerService($name.'.database', $config, Firebase\Contract\Database::class, $container, 'createDatabase');
-        $this->registerService($name.'.auth', $config, Firebase\Contract\Auth::class, $container, 'createAuth');
-        $this->registerService($name.'.storage', $config, Firebase\Contract\Storage::class, $container, 'createStorage');
-        $this->registerService($name.'.remote_config', $config, Firebase\Contract\RemoteConfig::class, $container, 'createRemoteConfig');
-        $this->registerService($name.'.messaging', $config, Firebase\Contract\Messaging::class, $container, 'createMessaging');
-        $this->registerService($name.'.firestore', $config, Firebase\Contract\Firestore::class, $container, 'createFirestore');
-        $this->registerService($name.'.dynamic_links', $config, Firebase\Contract\DynamicLinks::class, $container, 'createDynamicLinksService');
+        $this->registerService($name, 'database', $config, Firebase\Contract\Database::class, $container, 'createDatabase');
+        $this->registerService($name, 'auth', $config, Firebase\Contract\Auth::class, $container, 'createAuth');
+        $this->registerService($name, 'storage', $config, Firebase\Contract\Storage::class, $container, 'createStorage');
+        $this->registerService($name, 'remote_config', $config, Firebase\Contract\RemoteConfig::class, $container, 'createRemoteConfig');
+        $this->registerService($name, 'messaging', $config, Firebase\Contract\Messaging::class, $container, 'createMessaging');
+        $this->registerService($name, 'firestore', $config, Firebase\Contract\Firestore::class, $container, 'createFirestore');
+        $this->registerService($name, 'dynamic_links', $config, Firebase\Contract\DynamicLinks::class, $container, 'createDynamicLinksService');
     }
 
     public function getAlias(): string
@@ -59,9 +59,9 @@ class FirebaseExtension extends Extension
         return new Configuration($this->getAlias());
     }
 
-    private function registerService(string $name, array $config, string $contract, ContainerBuilder $container, string $method = 'create'): void
+    private function registerService(string $name, string $postfix, array $config, string $contract, ContainerBuilder $container, string $method = 'create'): void
     {
-        $projectServiceId = \sprintf('%s.%s', $this->getAlias(), $name);
+        $projectServiceId = \sprintf('%s.%s.%s', $this->getAlias(), $name, $postfix);
         $isPublic = $config['public'];
 
         $factory = new Definition(ProjectFactory::class);
@@ -91,6 +91,8 @@ class FirebaseExtension extends Extension
         if ($config['default'] ?? false) {
             $container->setAlias($contract, $projectServiceId)->setPublic($isPublic);
         }
+
+        $container->registerAliasForArgument($projectServiceId, $contract, $name.ucfirst($postfix));
     }
 
     private function assertThatOnlyOneDefaultProjectExists(array $projectConfigurations): void
