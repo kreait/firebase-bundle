@@ -103,7 +103,7 @@ kreait_firebase:
         my_project:
             # Optional: Path to the project's Service Account credentials file
             # If omitted, the credentials will be auto-discovered as described
-            # in https://firebase-php.readthedocs.io/en/stable/setup.html#with-autodiscovery
+            # in https://firebase-php.readthedocs.io/en/stable/setup.html
             credentials: '%kernel.project_dir%/config/my_project_credentials.json'
             # Optional: If set to true, this project will be used when 
             # type hinting the component classes of the Firebase SDK,

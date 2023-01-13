@@ -1,26 +1,27 @@
 name: Tests
 
 on:
-    push: ~
-    pull_request: ~
+    push:
+    pull_request:
 
 jobs:
-    build:
+    test:
+        # Don't run the tests on internal PRs
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+        name: PHP ${{ matrix.php }} / Symfony ${{ matrix.symfony }}
         runs-on: 'ubuntu-latest'
-        name: PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
+
         strategy:
             matrix:
-                php: ['7.4', '8.0', '8.1']
-                symfony: ['^5.4']
-                dependencies: ['lowest', 'highest']
+                php: ['8.1', '8.2']
+                symfony: ['6.0.*', '6.1.*']
                 include:
-                    - php: '8.0'
-                      symfony: '6.0.*'
                     - php: '8.1'
-                      symfony: '6.0.*'
+                      symfony: '5.4.*'
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v3
 
             - name: Setup PHP ${{ matrix.php }}
               uses: shivammathur/setup-php@v2
@@ -32,8 +33,6 @@ jobs:
               env:
                   SYMFONY_REQUIRE: ${{ matrix.symfony }}
               uses: ramsey/composer-install@v1
-              with:
-                  dependency-versions: "${{ matrix.dependencies }}"
 
             - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
               run: ./vendor/bin/phpunit

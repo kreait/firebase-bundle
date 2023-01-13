@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             ->variableNode('credentials')
-                                ->info('Path to the project\'s Service Account credentials file or the json/array credentials parameters. If omitted, the credentials will be auto-dicovered as described in https://firebase-php.readthedocs.io/en/stable/setup.html#with-autodiscovery')
+                                ->info('Path to the project\'s Service Account credentials file or the json/array credentials parameters. If omitted, the credentials will be auto-dicovered as described in https://firebase-php.readthedocs.io/en/stable/setup.html')
                                 ->example('%kernel.project_dir%/config/my_project_credentials.json or credentials: type ..')
                                 ->validate()
                                     ->ifTrue(static function ($v) {return !\is_string($v) && !\is_array($v); })

@@ -68,9 +68,7 @@ class ProjectFactory
         $factory = clone $this->firebaseFactory; // Ensure a new instance
 
         if ($config['credentials'] ?? null) {
-            $factory = $factory
-                ->withServiceAccount($config['credentials'])
-                ->withDisabledAutoDiscovery();
+            $factory = $factory->withServiceAccount($config['credentials']);
         }
 
         if ($config['database_uri'] ?? null) {

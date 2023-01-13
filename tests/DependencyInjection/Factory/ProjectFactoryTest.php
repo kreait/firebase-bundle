@@ -45,7 +45,7 @@ final class ProjectFactoryTest extends TestCase
      */
     public function it_can_handle_a_custom_database_uri(): void
     {
-        $this->factory->createDatabase($this->defaultConfig + ['database_uri' => 'http://domain.tld']);
+        $this->factory->createDatabase($this->defaultConfig + ['database_uri' => 'https://domain.tld']);
         $this->addToAssertionCount(1);
     }
 
