@@ -12,8 +12,8 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 
 - [Overview](#overview)
 - [Installation](#installation)
+- [Supported Versions](#supported-versions)
 - [Documentation](#documentation)
-- [Support](#support)
 - [License](#license)
 
 ## Overview
@@ -45,6 +45,22 @@ return [
     Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
 ];
 ```
+
+## Supported Versions
+
+**Only the latest version is actively supported.**
+
+Earlier versions will receive security fixes as long as their **lowest** SDK requirement receives security fixes. You
+can find the currently supported versions and support options in the [SDK's README](https://github.com/kreait/firebase-php).
+
+| Version | Initial Release | Supported SDK Versions | Supported Symfony Versions | Status         |
+|---------|-----------------|------------------------|----------------------------|----------------|
+| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Active support |
+| `4.x`   | 09 Jan 2022     | `^6.0`                 | `^5.4, ^6.0`               | End of life    |
+| `3.x`   | 30 Nov 2021     | `^5.25`                | `^5.4, ^6.0`               | End of life    |
+| `2.x`   | 01 Apr 2020     | `^5.0`                 | `^3.4.26, ^4.2, ^5.0`      | End of life    |
+| `1.x`   | 06 Apr 2018     | `^4.35`                | `^3.4, ^4.2, ^5.0`         | End of life    |
+| `0.x`   | 23 Jan 2015     | `0.9.*`                | `^2.0, ^3.0`               | End of life    |
 
 ## Configuration
 
@@ -133,27 +149,10 @@ kreait_firebase:
 
 ## Documentation
 
-- [Authentication Guide](https://firebase-php.readthedocs.io/en/stable/authentication.html)
-- [Cloud Messaging Guide](https://firebase-php.readthedocs.io/en/stable/cloud-messaging.html)
-- [Cloud Storage Guide](https://firebase-php.readthedocs.io/en/stable/cloud-storage.html)
-- [Dynamic Links Guide](https://firebase-php.readthedocs.io/en/stable/dynamic-links.html)
-- [Firestore Guide](https://firebase-php.readthedocs.io/en/stable/cloud-firestore.html)
-- [Realtime Database Guide](https://firebase-php.readthedocs.io/en/stable/realtime-database.html)
-- [Remote Config Guide](https://firebase-php.readthedocs.io/en/stable/remote-config.html)
-
-## Support
-
-- [Issue Tracker (Symfony Bundle)](https://github.com/kreait/firebase-bundle/issues/)
-- [Bug Reports (Admin SDK)](https://github.com/kreait/firebase-php/issues/)
-- [Feature Requests and Discussions (Admin SDK)](https://github.com/kreait/firebase-php/discussions)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase+php)
-
-_If you or your team rely on this project and me maintaining it, please consider becoming a
-[Sponsor](https://github.com/sponsors/jeromegamez/) 🙏. Higher tiers enable access to extended
-support._
+For documentation of the underlying SDK, visit the [Firebase Admin PHP SDK documentation](https://firebase-php.readthedocs.io/).
 
 ## License
 
-Firebase Admin PHP SDK is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 Your use of Firebase is governed by the [Terms of Service for Firebase Services](https://firebase.google.com/terms/).
