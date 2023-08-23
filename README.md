@@ -8,7 +8,15 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![Tests](https://github.com/kreait/firebase-bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/kreait/firebase-bundle/actions/workflows/tests.yml)
 [![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
 
-## Table of Contents
+---
+
+## The future of this project
+
+**Unless funding is found to continue maintaining this project and the underlying SDK, maintenance will be halted.**
+
+[You can find more information in the GitHub Repo of the Firebase PHP Admin SDK.](https://github.com/kreait/firebase-php)
+
+---
 
 - [Overview](#overview)
 - [Installation](#installation)
@@ -53,14 +61,14 @@ return [
 Earlier versions will receive security fixes as long as their **lowest** SDK requirement receives security fixes. You
 can find the currently supported versions and support options in the [SDK's README](https://github.com/kreait/firebase-php).
 
-| Version | Initial Release | Supported SDK Versions | Supported Symfony Versions | Status         |
-|---------|-----------------|------------------------|----------------------------|----------------|
-| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Active support |
-| `4.x`   | 09 Jan 2022     | `^6.0`                 | `^5.4, ^6.0`               | End of life    |
-| `3.x`   | 30 Nov 2021     | `^5.25`                | `^5.4, ^6.0`               | End of life    |
-| `2.x`   | 01 Apr 2020     | `^5.0`                 | `^3.4.26, ^4.2, ^5.0`      | End of life    |
-| `1.x`   | 06 Apr 2018     | `^4.35`                | `^3.4, ^4.2, ^5.0`         | End of life    |
-| `0.x`   | 23 Jan 2015     | `0.9.*`                | `^2.0, ^3.0`               | End of life    |
+| Version | Initial Release | Supported SDK Versions | Supported Symfony Versions | Status      |
+|---------|-----------------|------------------------|----------------------------|-------------|
+| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Halted      |
+| `4.x`   | 09 Jan 2022     | `^6.0`                 | `^5.4, ^6.0`               | End of life |
+| `3.x`   | 30 Nov 2021     | `^5.25`                | `^5.4, ^6.0`               | End of life |
+| `2.x`   | 01 Apr 2020     | `^5.0`                 | `^3.4.26, ^4.2, ^5.0`      | End of life |
+| `1.x`   | 06 Apr 2018     | `^4.35`                | `^3.4, ^4.2, ^5.0`         | End of life |
+| `0.x`   | 23 Jan 2015     | `0.9.*`                | `^2.0, ^3.0`               | End of life |
 
 ## Configuration
 
