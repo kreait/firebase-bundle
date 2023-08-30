@@ -10,11 +10,10 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 
 ---
 
-## The future of this project
+## The future of the Firebase Admin PHP SDK
 
-**Unless funding is found to continue maintaining this project and the underlying SDK, maintenance will be halted.**
-
-[You can find more information in the GitHub Repo of the Firebase PHP Admin SDK.](https://github.com/kreait/firebase-php)
+Please read about the future of the Firebase Admin PHP SDK on the
+[SDK's GitHub Repository](https://github.com/kreait/firebase-php).
 
 ---
 
@@ -63,7 +62,7 @@ can find the currently supported versions and support options in the [SDK's READ
 
 | Version | Initial Release | Supported SDK Versions | Supported Symfony Versions | Status      |
 |---------|-----------------|------------------------|----------------------------|-------------|
-| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Halted      |
+| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Active      |
 | `4.x`   | 09 Jan 2022     | `^6.0`                 | `^5.4, ^6.0`               | End of life |
 | `3.x`   | 30 Nov 2021     | `^5.25`                | `^5.4, ^6.0`               | End of life |
 | `2.x`   | 01 Apr 2020     | `^5.0`                 | `^3.4.26, ^4.2, ^5.0`      | End of life |
