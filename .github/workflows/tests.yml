@@ -21,7 +21,7 @@ jobs:
                       symfony: '5.4.*'
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Setup PHP ${{ matrix.php }}
               uses: shivammathur/setup-php@v2
