@@ -47,6 +47,7 @@ class FirebaseExtension extends Extension
         $this->registerService($name, 'messaging', $config, Firebase\Contract\Messaging::class, $container, 'createMessaging');
         $this->registerService($name, 'firestore', $config, Firebase\Contract\Firestore::class, $container, 'createFirestore');
         $this->registerService($name, 'dynamic_links', $config, Firebase\Contract\DynamicLinks::class, $container, 'createDynamicLinksService');
+        $this->registerService($name, 'app_check', $config, Firebase\Contract\AppCheck::class, $container, 'createAppCheck');
     }
 
     public function getAlias(): string
