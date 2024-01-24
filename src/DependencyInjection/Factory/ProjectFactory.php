@@ -129,4 +129,9 @@ class ProjectFactory
 
         return $this->createFactory($config)->createDynamicLinksService($defaultDynamicLinksDomain);
     }
+
+    public function createAppCheck(array $config = []): Firebase\Contract\AppCheck
+    {
+        return $this->createFactory($config)->createAppCheck();
+    }
 }
