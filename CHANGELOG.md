@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [5.2.0] - 2023-11-30
+
+* Added Support for AppCheck
+  ([#54](https://github.com/kreait/firebase-bundle/pull/53))
+
 ## [5.1.1] - 2023-11-30
 
 * Actually support Symfony 7
@@ -97,7 +102,8 @@ This is a release with breaking changes. Please review the following changes and
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/5.1.1...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/5.2.0...HEAD
+[5.2.0]: https://github.com/kreait/firebase-bundle/compare/5.1.1...5.2.0
 [5.1.1]: https://github.com/kreait/firebase-bundle/compare/5.1.0...5.1.1
 [5.1.0]: https://github.com/kreait/firebase-bundle/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/kreait/firebase-bundle/compare/4.1.0...5.0.0
