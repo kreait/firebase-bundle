@@ -109,7 +109,7 @@ The following classes will be available for dependency injection if you have con
 
 To make it easier to use classes via dependency injection in the constructor of a class when multiple projects exist, you can do this in the constructor:
 
-* `Kreait\Firebase\Contract\Auth $myProjectAppCheck`
+* `Kreait\Firebase\Contract\AppCheck $myProjectAppCheck`
 * `Kreait\Firebase\Contract\Auth $myProjectAuth`
 * `Kreait\Firebase\Contract\Database $myProjectDatabase`
 * `Kreait\Firebase\Contract\Firestore $myProjectFirestore`
