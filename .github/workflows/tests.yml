@@ -46,7 +46,7 @@ jobs:
             - name: Download dependencies
               env:
                   SYMFONY_REQUIRE: ${{ matrix.symfony }}
-              uses: ramsey/composer-install@v2
+              uses: ramsey/composer-install@v3
 
             - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
               run: ./vendor/bin/phpunit
