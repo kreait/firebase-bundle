@@ -11,7 +11,7 @@
     <services>
         <service id="Kreait\Firebase\Factory" class="%kreait.firebase.factory%" />
 
-        <service id="Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory" class="%kreait.firebase.bundle.project_factory%">
+        <service id="Kreait\Firebase\Symfony\Bundle\DependencyInjection\Factory\ProjectFactory" class="%kreait.firebase.bundle.project_factory%" public="false">
             <argument type="service" id="Kreait\Firebase\Factory" />
         </service>
     </services>
