@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [5.3.0] - 2024-05-28
+
+* Added Support for overriding the `ProjectFactory`
+  ([#60](https://github.com/kreait/firebase-bundle/pull/60))
+
 ## [5.2.0] - 2023-11-30
 
 * Added Support for AppCheck
