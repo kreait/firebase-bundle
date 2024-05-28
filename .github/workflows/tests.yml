@@ -1,52 +1,52 @@
 name: Tests
 
 on:
-    pull_request:
-        paths:
-            - 'config/**'
-            - 'src/**'
-            - 'tests/**'
-            - '.github/workflows/tests.yml'
-            - 'composer.json'
-    push:
-        branches: ['main']
-        paths:
-            - 'config/**'
-            - 'src/**'
-            - 'tests/**'
-            - '.github/workflows/tests.yml'
-            - 'composer.json'
-    workflow_dispatch:
+  pull_request:
+    paths:
+      - 'config/**'
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/tests.yml'
+      - 'composer.json'
+  push:
+    branches: ['main']
+    paths:
+      - 'config/**'
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/tests.yml'
+      - 'composer.json'
+  workflow_dispatch:
 
 jobs:
-    test:
-        # Don't run the tests on internal PRs
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+  test:
+    # Don't run the tests on internal PRs
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
 
-        name: PHP ${{ matrix.php }} / Symfony ${{ matrix.symfony }}
-        runs-on: 'ubuntu-latest'
+    name: PHP ${{ matrix.php }} / Symfony ${{ matrix.symfony }}
+    runs-on: 'ubuntu-latest'
 
-        strategy:
-            matrix:
-                php: ['8.1', '8.2', '8.3']
-                symfony: ['6.0.*', '6.1.*']
-                include:
-                    - php: '8.1'
-                      symfony: '5.4.*'
-                    - symfony: '7.0.*'
-        steps:
-            - uses: actions/checkout@v4
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3']
+        symfony: ['6.0.*', '6.1.*']
+        include:
+          - php: '8.1'
+            symfony: '5.4.*'
+          - symfony: '7.0.*'
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Setup PHP ${{ matrix.php }}
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  tools: flex
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: flex
 
-            - name: Download dependencies
-              env:
-                  SYMFONY_REQUIRE: ${{ matrix.symfony }}
-              uses: ramsey/composer-install@v3
+      - name: Download dependencies
+        env:
+          SYMFONY_REQUIRE: ${{ matrix.symfony }}
+        uses: ramsey/composer-install@v3
 
-            - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
-              run: ./vendor/bin/phpunit
+      - name: Run test suite on PHP ${{ matrix.php }} and Symfony ${{ matrix.symfony }}
+        run: ./vendor/bin/phpunit
