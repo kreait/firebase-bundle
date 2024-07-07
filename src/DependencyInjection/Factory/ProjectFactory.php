@@ -79,6 +79,10 @@ class ProjectFactory
             $factory = $factory->withTenantId($config['tenant_id']);
         }
 
+        if ($config['project_id'] ?? null) {
+            $factory = $factory->withProjectId($config['project_id']);
+        }
+
         if ($this->verifierCache) {
             $factory = $factory->withVerifierCache($this->verifierCache);
         }

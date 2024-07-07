@@ -92,6 +92,15 @@ final class ProjectFactoryTest extends TestCase
     /**
      * @test
      */
+    public function it_can_handle_a_project_id(): void
+    {
+        $instance = $this->factory->createAuth($this->defaultConfig + ['project_id' => 'project-b']);
+        $this->addToAssertionCount(1);
+    }
+
+    /**
+     * @test
+     */
     public function it_accepts_a_PSR16_verifier_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);
