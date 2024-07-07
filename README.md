@@ -130,6 +130,9 @@ kreait_firebase:
             # If omitted, the credentials will be auto-discovered as described
             # in https://firebase-php.readthedocs.io/en/stable/setup.html
             credentials: '%kernel.project_dir%/config/my_project_credentials.json'
+            # Optional: Override the project being used
+            # If omitted, the project is automatically derived, e.g. from credentials
+            project_id: 'project-b'
             # Optional: If set to true, this project will be used when 
             # type hinting the component classes of the Firebase SDK,
             # e.g. Kreait\Firebase\Auth, Kreait\Firebase\Database,
