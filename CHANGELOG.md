@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [5.4.0] - 2024-07-08
+
+* Added the ability to override the project id 
+  ([#63](https://github.com/kreait/firebase-bundle/pull/63))
+
 ## [5.3.0] - 2024-05-28
 
 * Added Support for overriding the `ProjectFactory`
@@ -107,7 +112,8 @@ This is a release with breaking changes. Please review the following changes and
 * Removed Support for `kreait/firebase-php:<5.0`
 * Removed project aliases
 
-[Unreleased]: https://github.com/kreait/firebase-bundle/compare/5.2.0...HEAD
+[Unreleased]: https://github.com/kreait/firebase-bundle/compare/5.3.0...HEAD
+[5.3.0]: https://github.com/kreait/firebase-bundle/compare/5.2.0...5.3.0
 [5.2.0]: https://github.com/kreait/firebase-bundle/compare/5.1.1...5.2.0
 [5.1.1]: https://github.com/kreait/firebase-bundle/compare/5.1.0...5.1.1
 [5.1.0]: https://github.com/kreait/firebase-bundle/compare/5.0.0...5.1.0
