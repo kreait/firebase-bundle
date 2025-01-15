@@ -179,7 +179,9 @@ final class FirebaseExtensionTest extends TestCase
         $container->set($cacheServiceId, $invalidCache);
 
         $this->expectException(TypeError::class);
-        $container->get(Firebase\Contract\Auth::class);
+        /** @var Firebase\Contract\Auth $service */
+        $service = $container->get(Firebase\Contract\Auth::class);
+        $service->createAnonymousUser();
     }
 
     /**
@@ -199,7 +201,9 @@ final class FirebaseExtensionTest extends TestCase
         ]);
 
         $this->expectException(ServiceNotFoundException::class);
-        $container->get(Firebase\Contract\Auth::class);
+        /** @var Firebase\Contract\Auth $service */
+        $service = $container->get(Firebase\Contract\Auth::class);
+        $service->createAnonymousUser();
     }
 
     /**
