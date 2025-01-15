@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [5.6.0]
+
+* Make services lazy to instantiate them only when they are actually used
+  ([#66](https://github.com/kreait/firebase-bundle/pull/66))
+
 ## [5.5.0] - 2024-10-16
 
 * Added support for PHP 8.4
