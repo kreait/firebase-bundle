@@ -13,16 +13,10 @@ use Symfony\Component\Cache\Adapter\Psr16Adapter;
 
 class ProjectFactory
 {
-    private Factory $firebaseFactory;
     private ?CacheItemPoolInterface $verifierCache = null;
     private ?CacheItemPoolInterface $authTokenCache = null;
     private ?LoggerInterface $httpRequestLogger = null;
     private ?LoggerInterface $httpRequestDebugLogger = null;
-
-    public function __construct()
-    {
-        $this->firebaseFactory = new Factory();
-    }
 
     /**
      * @param CacheInterface|CacheItemPoolInterface $verifierCache
@@ -65,7 +59,7 @@ class ProjectFactory
 
     public function createFactory(array $config = []): Factory
     {
-        $factory = clone $this->firebaseFactory; // Ensure a new instance
+        $factory = new Factory();
 
         if ($config['credentials'] ?? null) {
             $factory = $factory->withServiceAccount($config['credentials']);

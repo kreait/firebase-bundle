@@ -85,6 +85,7 @@ class FirebaseExtension extends Extension
 
         $container->register($projectServiceId, $contract)
             ->setFactory([$factory, $method])
+            ->setLazy(true)
             ->addArgument($config)
             ->setPublic($isPublic);
 
