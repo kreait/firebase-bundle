@@ -8,14 +8,9 @@ A Symfony Bundle for the [Firebase PHP SDK](https://github.com/kreait/firebase-p
 [![Tests](https://github.com/kreait/firebase-bundle/actions/workflows/tests.yml/badge.svg)](https://github.com/kreait/firebase-bundle/actions/workflows/tests.yml)
 [![Sponsor](https://img.shields.io/static/v1?logo=GitHub&label=Sponsor&message=%E2%9D%A4&color=ff69b4)](https://github.com/sponsors/jeromegamez)
 
----
-
-## The future of the Firebase Admin PHP SDK
-
-Please read about the future of the Firebase Admin PHP SDK on the
-[SDK's GitHub Repository](https://github.com/kreait/firebase-php).
-
----
+> [!IMPORTANT]
+> **Support the project:** If it saves you or your team time, please consider
+> [sponsoring its development](https://github.com/sponsors/jeromegamez).
 
 - [Overview](#overview)
 - [Installation](#installation)
@@ -52,22 +47,6 @@ return [
     Kreait\Firebase\Symfony\Bundle\FirebaseBundle::class => ['all' => true],
 ];
 ```
-
-## Supported Versions
-
-**Only the latest version is actively supported.**
-
-Earlier versions will receive security fixes as long as their **lowest** SDK requirement receives security fixes. You
-can find the currently supported versions and support options in the [SDK's README](https://github.com/kreait/firebase-php).
-
-| Version | Initial Release | Supported SDK Versions | Supported Symfony Versions | Status      |
-|---------|-----------------|------------------------|----------------------------|-------------|
-| `5.x`   | 23 Jan 2023     | `^7.0`                 | `^5.4, ^6.0`               | Active      |
-| `4.x`   | 09 Jan 2022     | `^6.0`                 | `^5.4, ^6.0`               | End of life |
-| `3.x`   | 30 Nov 2021     | `^5.25`                | `^5.4, ^6.0`               | End of life |
-| `2.x`   | 01 Apr 2020     | `^5.0`                 | `^3.4.26, ^4.2, ^5.0`      | End of life |
-| `1.x`   | 06 Apr 2018     | `^4.35`                | `^3.4, ^4.2, ^5.0`         | End of life |
-| `0.x`   | 23 Jan 2015     | `0.9.*`                | `^2.0, ^3.0`               | End of life |
 
 ## Configuration
 
