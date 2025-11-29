@@ -3,19 +3,19 @@ name: Tests
 on:
   pull_request:
     paths:
-      - 'config/**'
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/tests.yml'
-      - 'composer.json'
+      - "config/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/tests.yml"
+      - "composer.json"
   push:
-    branches: ['main']
+    branches: ["main"]
     paths:
-      - 'config/**'
-      - 'src/**'
-      - 'tests/**'
-      - '.github/workflows/tests.yml'
-      - 'composer.json'
+      - "config/**"
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/tests.yml"
+      - "composer.json"
   workflow_dispatch:
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         matrix.dependencies || 'Ø',
         matrix.stability || 'Ø'
       ) }}
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
     env:
       SYMFONY_REQUIRE: ${{matrix.symfony-require}}
       SYMFONY_DEPRECATIONS_HELPER: weak
@@ -36,50 +36,54 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - '8.1'
-          - '8.2'
-          - '8.3'
-          - '8.4'
-          - '8.5'
+          - "8.1"
+          - "8.2"
+          - "8.3"
+          - "8.4"
+          - "8.5"
         dependencies:
-          - 'highest'
+          - "highest"
         stability:
-          - 'stable'
+          - "stable"
         symfony-require:
-          - ''
+          - ""
         include:
           # Test with the lowest set of dependencies
-          - php-version: '8.1'
-            dependencies: 'lowest'
-            stability: 'stable'
+          - php-version: "8.1"
+            dependencies: "lowest"
+            stability: "stable"
 
           # Test 6.4 LTS
-          - php-version: '8.5'
-            symfony-require: '6.4.*'
-            dependencies: 'highest'
+          - php-version: "8.5"
+            symfony-require: "6.4.*"
+            dependencies: "highest"
 
           # Test 7.4 LTS
-          - php-version: '8.5'
-            symfony-require: '7.4.*'
-            dependencies: 'highest'
+          - php-version: "8.5"
+            symfony-require: "7.4.*"
+            dependencies: "highest"
 
           # Bleeding edge
-          - php-version: '8.5'
-            dependencies: 'highest'
-            stability: 'dev'
+          - php-version: "8.5"
+            dependencies: "highest"
+            stability: "dev"
 
     steps:
-      - name: 'Checkout'
-        uses: 'actions/checkout@v6'
+      - name: "Checkout"
+        uses: "actions/checkout@v6"
         with:
           fetch-depth: 2
 
-      - name: 'Install PHP'
+      - name: "Install PHP"
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          ini-file: 'development'
+          ini-file: "development"
           tools: flex
+
+      - name: "Enforce using stable dependencies"
+        run: "composer config minimum-stability stable"
+        if: "${{ matrix.stability == 'stable' }}"
 
       - name: "Install dependencies with Composer"
         uses: "ramsey/composer-install@v3"
