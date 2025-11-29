@@ -11,9 +11,9 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <source restrictDeprecations="true">
+        <include>
             <directory>src</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </source>
 </phpunit>
