@@ -5,7 +5,7 @@
 ## [5.7.0]
 
 * Added support for PHP 8.5 and Symfony 8
-  ([#74](https://github.com/kreait/firebase-bundle/pull/74)
+  ([#74](https://github.com/kreait/firebase-bundle/pull/74))
 
 ## [5.6.0]
 
