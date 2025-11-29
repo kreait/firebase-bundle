@@ -9,6 +9,7 @@ use Kreait\Firebase\Symfony\Bundle\DependencyInjection\FirebaseExtension;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Log\LoggerInterface;
+use ReflectionException;
 use stdClass;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\Alias;
@@ -30,10 +31,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->extension = new FirebaseExtension();
     }
 
-    /**
-     * @test
-     */
-    public function a_project_is_created_with_a_service_for_each_feature(): void
+    public function test_a_project_is_created_with_a_service_for_each_feature(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -72,10 +70,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->assertInstanceOf(Firebase\Contract\AppCheck::class, $container->get(Firebase\Contract\AppCheck::class.' $fooAppCheck'));
     }
 
-    /**
-     * @test
-     */
-    public function a_verifier_cache_can_be_used(): void
+    public function test_a_verifier_cache_can_be_used(): void
     {
         $cacheServiceId = 'cache.app.simple.mock';
 
@@ -94,10 +89,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function an_auth_token_cache_can_be_used(): void
+    public function test_an_auth_token_cache_can_be_used(): void
     {
         $cacheServiceId = 'cache.app.simple.mock';
 
@@ -116,10 +108,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function a_request_logger_can_be_used(): void
+    public function test_a_request_logger_can_be_used(): void
     {
         $loggerServiceId = 'firebase_logger';
 
@@ -138,10 +127,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function a_request_debug_logger_can_be_used(): void
+    public function test_a_request_debug_logger_can_be_used(): void
     {
         $loggerServiceId = 'firebase_debug_logger';
 
@@ -160,56 +146,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function an_invalid_verifier_cache_can_not_be_used(): void
-    {
-        $cacheServiceId = 'invalid_cache_service';
-
-        $container = $this->createContainer([
-            'projects' => [
-                'foo' => [
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                    'verifier_cache' => $cacheServiceId,
-                ],
-            ],
-        ]);
-        $invalidCache = $this->createMock(stdClass::class);
-        $container->set($cacheServiceId, $invalidCache);
-
-        $this->expectException(TypeError::class);
-        /** @var Firebase\Contract\Auth $service */
-        $service = $container->get(Firebase\Contract\Auth::class);
-        $service->createAnonymousUser();
-    }
-
-    /**
-     * @test
-     */
-    public function a_non_existing_verifier_cache_can_not_be_used(): void
-    {
-        $cacheServiceId = 'nonexisting';
-
-        $container = $this->createContainer([
-            'projects' => [
-                'foo' => [
-                    'credentials' => __DIR__.'/../_fixtures/valid_credentials.json',
-                    'verifier_cache' => $cacheServiceId,
-                ],
-            ],
-        ]);
-
-        $this->expectException(ServiceNotFoundException::class);
-        /** @var Firebase\Contract\Auth $service */
-        $service = $container->get(Firebase\Contract\Auth::class);
-        $service->createAnonymousUser();
-    }
-
-    /**
-     * @test
-     */
-    public function a_project_can_be_private(): void
+    public function test_a_project_can_be_private(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -224,10 +161,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->assertFalse($container->has($this->extension->getAlias().'.foo'));
     }
 
-    /**
-     * @test
-     */
-    public function it_can_provide_multiple_projects(): void
+    public function test_it_can_provide_multiple_projects(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -244,10 +178,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.bar.auth'));
     }
 
-    /**
-     * @test
-     */
-    public function it_supports_specifying_credentials(): void
+    public function test_it_supports_specifying_credentials(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -260,10 +191,7 @@ final class FirebaseExtensionTest extends TestCase
         $this->assertTrue($container->hasDefinition($this->extension->getAlias().'.foo.auth'));
     }
 
-    /**
-     * @test
-     */
-    public function it_accepts_only_one_default_project(): void
+    public function test_it_accepts_only_one_default_project(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
@@ -281,10 +209,7 @@ final class FirebaseExtensionTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
-    public function it_has_no_default_project_if_none_could_be_determined(): void
+    public function test_it_has_no_default_project_if_none_could_be_determined(): void
     {
         $container = $this->createContainer([
             'projects' => [

@@ -40,28 +40,19 @@ final class ProjectFactoryTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_custom_database_uri(): void
+    public function test_it_can_handle_a_custom_database_uri(): void
     {
         $this->factory->createDatabase($this->defaultConfig + ['database_uri' => 'https://domain.tld']);
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_credentials_path(): void
+    public function test_it_can_handle_a_credentials_path(): void
     {
         $this->factory->createAuth(['credentials' => __DIR__.'/../../_fixtures/valid_credentials.json']);
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_credentials_string(): void
+    public function test_it_can_handle_a_credentials_string(): void
     {
         $credentials = \file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json');
 
@@ -69,10 +60,7 @@ final class ProjectFactoryTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_credentials_array(): void
+    public function test_it_can_handle_a_credentials_array(): void
     {
         $credentials = \json_decode(\file_get_contents(__DIR__.'/../../_fixtures/valid_credentials.json'), true);
 
@@ -80,28 +68,19 @@ final class ProjectFactoryTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_tenant_id(): void
+    public function test_it_can_handle_a_tenant_id(): void
     {
         $this->factory->createAuth($this->defaultConfig + ['tenant_id' => 'tenant-id']);
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_can_handle_a_project_id(): void
+    public function test_it_can_handle_a_project_id(): void
     {
         $instance = $this->factory->createAuth($this->defaultConfig + ['project_id' => 'project-b']);
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_accepts_a_PSR16_verifier_cache(): void
+    public function test_it_accepts_a_PSR16_verifier_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);
 
@@ -110,10 +89,7 @@ final class ProjectFactoryTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_accepts_a_PSR6_verifier_cache(): void
+    public function test_it_accepts_a_PSR6_verifier_cache(): void
     {
         $cache = $this->createMock(CacheItemPoolInterface::class);
 
@@ -122,10 +98,7 @@ final class ProjectFactoryTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function it_accepts_a_PSR16_auth_token_cache(): void
+    public function test_it_accepts_a_PSR16_auth_token_cache(): void
     {
         $cache = $this->createMock(CacheInterface::class);
 
